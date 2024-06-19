@@ -97,15 +97,6 @@ const dummyData = [
     certificateLink:
       "https://www.coursera.org/account/accomplishments/professional-cert/4A3BX3DN2ZZ6",
   },
-
-  {
-    title: "Coursera",
-    description: "Optimizing Your Website's Keywords & Pages using Ubersuggest",
-    tags: ["SEO"],
-    imgUrl: "/certificates/ubersuggest.png",
-    certificateLink:
-      "https://www.coursera.org/account/accomplishments/certificate/ESMBVW5SRYYX",
-  },
 ];
 
 const Cert = () => {
