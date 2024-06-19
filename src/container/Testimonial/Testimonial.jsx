@@ -27,39 +27,11 @@ const dummyTestimonials = [
     company: "MapleDwell",
     feedbackImg: "/reveiws/27.png",
   },
-  // {
-  //   company: "CozyHome Mart",
-  //   feedbackImg: "/reveiws/24.png",
-  // },
-];
-
-const dummyBrands = [
-  {
-    name: "Brand A",
-    imgUrl: "/brands/amazon.png",
-  },
-  {
-    name: "Brand B",
-    imgUrl: "/brands/asus.png",
-  },
-  {
-    name: "Brand C",
-    imgUrl: "/brands/bolt.png",
-  },
-  {
-    name: "Brand C",
-    imgUrl: "/brands/nb.png",
-  },
-  {
-    name: "Brand C",
-    imgUrl: "/brands/spotify.png",
-  },
 ];
 
 const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [testimonials, setTestimonials] = useState([]);
-  const [brands, setBrands] = useState([]);
 
   const handleClick = (index) => {
     setCurrentIndex(index);
@@ -68,13 +40,24 @@ const Testimonial = () => {
   useEffect(() => {
     // Setting dummy data directly
     setTestimonials(dummyTestimonials);
-    setBrands(dummyBrands);
   }, []);
+
+  useEffect(() => {
+    const autoSlide = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, 3000); // Auto-slide every 3 seconds
+
+    return () => clearInterval(autoSlide);
+  }, [testimonials.length]);
 
   return (
     <>
       {testimonials.length && (
         <>
+          {" "}
+          <h2 className="head-text">
+            Hear From <span>Those I've Worked With</span>
+          </h2>
           <div className="app__testimonial-item app__flex">
             <div className="app__testimonial-content">
               <img
@@ -88,7 +71,6 @@ const Testimonial = () => {
               </div>
             </div>
           </div>
-
           <div className="app__testimonial-btns app__flex">
             <div
               className="app__flex"
