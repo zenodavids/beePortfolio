@@ -12,6 +12,7 @@ import {
 import { Navbar } from "./components";
 
 import "./App.scss";
+import QuickBrandCheck from "./components/QuickBrandCheck";
 
 const App = () => (
   <div className="app">
@@ -23,6 +24,7 @@ const App = () => (
     {/* <Work /> */}
     <Skills />
     <Footer />
+    <QuickBrandCheck />
   </div>
 );
 
