@@ -1130,7 +1130,7 @@ export default function QuickBrandCheck() {
           className="quick-brand-check__button"
         >
           <FaBullseye className="icon" />
-          <span>Quick Brand Check</span>
+          <span style={{ color: "white" }}>Quick Brand Check</span>
         </button>
       )}
 
@@ -1276,7 +1276,10 @@ export default function QuickBrandCheck() {
                   >
                     {loading ? (
                       <span className="quick-brand-check__loading">
-                        <span className="quick-brand-check__loading-spinner"></span>
+                        <span
+                          style={{ color: "white" }}
+                          className="quick-brand-check__loading-spinner"
+                        ></span>
                         Analyzing...
                       </span>
                     ) : (
