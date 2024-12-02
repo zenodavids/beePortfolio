@@ -71,38 +71,11 @@
   }
 }
 .typewriter-text {
-  font-weight: 500;
+  font-weight: 700;
   text-align: left;
   color: white !important;
   text-transform: capitalize;
-
-  @media screen and (min-width: 2000px) {
-    font-size: 2rem !important;
-  }
-
-  // @media screen and (max-width: 450px) {
-  //   font-size: 0.25rem !important;
-  // }
-  /* Extra small devices (phones, 600px and down) */
-  @media only screen and (max-width: 600px) {
-    font-size: 0.75rem !important;
-  }
-  /* Small devices (portrait tablets and large phones, 600px and up) */
-  @media only screen and (min-width: 600px) {
-    font-size: 1rem !important;
-  }
-  /* Medium devices (landscape tablets, 768px and up) */
-  @media only screen and (min-width: 768px) {
-    font-size: 1.5rem !important;
-  }
-  /* Large devices (laptops/desktops, 992px and up) */
-  @media only screen and (min-width: 992px) {
-    font-size: 2rem !important;
-  }
-  /* Extra large devices (large laptops and desktops, 1200px and up) */
-  @media only screen and (min-width: 1200px) {
-    font-size: 2rem !important;
-  }
+  font-size: 0.75rem !important;
 }
 
 .p-text {

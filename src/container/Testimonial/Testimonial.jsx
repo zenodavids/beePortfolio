@@ -11,14 +11,15 @@ const dummyTestimonials = [
     company: "GLEAC",
     feedbackImg: "/reveiws/27.png",
     metrics: {
-      conversionRate: "45%",
-      pipelineValue: "$2.5M",
-      timeframe: "6 months",
+      conversionRate: "25%",
+      pipelineGenerated: "$2.5M",
+      meetingsBooked: "120",
+      avgDealSize: "$50K",
     },
     beforeAfter: {
-      before: "12 leads/month",
-      after: "45 leads/month",
-      improvement: "275%",
+      before: "15 meetings/month",
+      after: "40 meetings/month",
+      improvement: "167%",
     },
     industry: "SaaS",
     author: "Sarah Chen",
@@ -28,14 +29,15 @@ const dummyTestimonials = [
     company: "Selling to Executives",
     feedbackImg: "/reveiws/24.png",
     metrics: {
-      conversionRate: "38%",
-      pipelineValue: "$1.8M",
-      timeframe: "4 months",
+      conversionRate: "22%",
+      pipelineGenerated: "$1.8M",
+      meetingsBooked: "90",
+      avgDealSize: "$45K",
     },
     beforeAfter: {
-      before: "8 leads/month",
-      after: "32 leads/month",
-      improvement: "300%",
+      before: "10 meetings/month",
+      after: "30 meetings/month",
+      improvement: "200%",
     },
     industry: "Tech",
     author: "Michael Ross",
@@ -45,17 +47,17 @@ const dummyTestimonials = [
     company: "5T Media and Design",
     feedbackImg: "/reveiws/25.png",
     metrics: {
-      conversionRate: "35%",
-      pipelineValue: "$1.2M",
-      timeframe: "3 months",
+      conversionRate: "20%",
+      pipelineGenerated: "$1.2M",
+      meetingsBooked: "75",
+      avgDealSize: "$40K",
     },
     beforeAfter: {
-      before: "15 leads/month",
-      after: "40 leads/month",
-      improvement: "167%",
+      before: "12 meetings/month",
+      after: "25 meetings/month",
+      improvement: "108%",
     },
     industry: "Media",
-
     author: "Jennifer Wu",
     position: "Marketing Manager",
   },
@@ -63,17 +65,17 @@ const dummyTestimonials = [
     company: "Avani Media",
     feedbackImg: "/reveiws/26.png",
     metrics: {
-      conversionRate: "42%",
-      pipelineValue: "$950K",
-      timeframe: "3 months",
+      conversionRate: "28%",
+      pipelineGenerated: "$950K",
+      meetingsBooked: "60",
+      avgDealSize: "$35K",
     },
     beforeAfter: {
-      before: "10 leads/month",
-      after: "35 leads/month",
-      improvement: "250%",
+      before: "8 meetings/month",
+      after: "20 meetings/month",
+      improvement: "150%",
     },
     industry: "Digital Media",
-
     author: "David Park",
     position: "Business Development Lead",
   },
@@ -81,17 +83,17 @@ const dummyTestimonials = [
     company: "MapleDwell",
     feedbackImg: "/reveiws/27.png",
     metrics: {
-      conversionRate: "40%",
-      pipelineValue: "$1.5M",
-      timeframe: "5 months",
+      conversionRate: "30%",
+      pipelineGenerated: "$1.5M",
+      meetingsBooked: "100",
+      avgDealSize: "$55K",
     },
     beforeAfter: {
-      before: "20 leads/month",
-      after: "50 leads/month",
-      improvement: "150%",
+      before: "18 meetings/month",
+      after: "35 meetings/month",
+      improvement: "94%",
     },
     industry: "Real Estate",
-
     author: "Lisa Chen",
     position: "VP of Sales",
   },
@@ -113,7 +115,7 @@ const Testimonial = () => {
   useEffect(() => {
     const autoSlide = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-    }, 5000); // Auto-slide every 3 seconds
+    }, 5000); // Auto-slide every 5 seconds
 
     return () => clearInterval(autoSlide);
   }, [testimonials.length]);
@@ -150,19 +152,25 @@ const Testimonial = () => {
                   <span className="metric-value">
                     {testimonials[currentIndex].metrics.conversionRate}
                   </span>
-                  <span className="metric-label">Success Rate</span>
+                  <span className="metric-label">Conversion Rate</span>
                 </div>
                 <div className="metric-box">
                   <span className="metric-value">
-                    {testimonials[currentIndex].metrics.pipelineValue}
+                    {testimonials[currentIndex].metrics.pipelineGenerated}
                   </span>
-                  <span className="metric-label">Total Sales Value</span>
+                  <span className="metric-label">Pipeline Generated</span>
                 </div>
                 <div className="metric-box">
                   <span className="metric-value">
-                    {testimonials[currentIndex].beforeAfter.improvement}
+                    {testimonials[currentIndex].metrics.meetingsBooked}
                   </span>
-                  <span className="metric-label">Overall Increase</span>
+                  <span className="metric-label">Meetings Booked</span>
+                </div>
+                <div className="metric-box">
+                  <span className="metric-value">
+                    {testimonials[currentIndex].metrics.avgDealSize}
+                  </span>
+                  <span className="metric-label">Average Deal Size</span>
                 </div>
               </div>
             </div>

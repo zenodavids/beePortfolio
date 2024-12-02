@@ -1,13 +1,8 @@
-{
-"brandName": "Zara",
-"industry": "Fast Fashion Retail",
-"marketingChannels": "Instagram, TikTok, Store Displays, Email Newsletters, Influencer Partnerships, Mobile App",
-"currentChallenges": "Supply chain sustainability, fast-fashion criticism, online-offline integration, inventory management, competition from online-only retailers"
-}
-
-{
-"brandName": "Starbucks",
-"industry": "Coffee & Beverage Retail",
-"marketingChannels": "Mobile App, Loyalty Program, Social Media, In-Store Promotions, Corporate Partnerships",
-"currentChallenges": "Rising ingredient costs, labor shortages, store unionization efforts, competition from local coffee shops, sustainability initiatives"
+const sampleStartupData = {
+brandName: "TechFlow AI",
+industry: "SaaS / AI Technology",
+companySize: "1-50",
+targetMarket: "Small to Medium B2B Software Companies",
+marketingChannels: "LinkedIn, Content Marketing, Product Hunt, Tech Conferences",
+currentChallenges: "We're a B2B SaaS startup that launched 6 months ago. Our main challenges are: 1) Long sales cycles with enterprise clients, 2) Limited marketing budget but need to increase brand visibility, 3) High customer acquisition costs, 4) Need to improve our conversion rate from free trial to paid subscriptions, 5) Competing with established players in the market."
 }

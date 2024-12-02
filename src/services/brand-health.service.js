@@ -14,133 +14,143 @@ export async function generateBrandHealthAnalysis(formData) {
   });
 
   // Using your exact prompt without any modifications
-  const prompt = `Analyze this brand and return a comprehensive JSON health assessment. Consider market intelligence, competitive position, and future readiness based on the following data:
-:
+  const prompt = `Analyze this potential business opportunity and create a compelling case for collaboration. Based on the following inputs, generate a strategic partnership proposal that demonstrates the value I can bring as an SDR/Business Development professional:
 
   Brand: ${formData.brandName}
 Industry: ${formData.industry}
+Company Size: ${formData.companySize}
+Target Market: ${formData.targetMarket}
 Marketing Channels: ${formData.marketingChannels}
 Challenges: ${formData.currentChallenges}
 
 Important:
-1. All numerical values must be realistic
-2. All arrays must contain at least 2 items
-3. All percentage values must be between 0-100
-4. All timeframes must be specific (e.g., "3 months", "6 months")
-5. All monetary values must be in USD
+1. All numerical values must be realistic for the industry
+2. All monetary values in USD
+3. All timeframes must be specific (e.g., "30 days", "90 days")
+4. Focus on achievable, measurable outcomes
+5. Include specific success metrics past experience
 
 
 Return a valid JSON object with the following structure. DO NOT include any explanatory text outside the JSON:
 
 
 {
-  "coreMetrics": {
-    "brandScore": number,
-    "digitalScore": number,
-    "loyaltyScore": number,
-    "visualScore": number,
-    "voiceScore": number,
-    "potentialGrowth": number,
-    "revenueImpact": {
-      "current": number,
-      "projected6Months": number,
-      "projected12Months": number,
-      "confidence": number
+  "opportunityAssessment": {
+    "painPoints": {
+      "currentChallenges": string[],
+      "missedOpportunities": string[],
+      "revenueImpact": number,
+      "marketPositionImpact": string
+    },
+    "valueProposition": {
+      "immediateGains": string[],
+      "projectedOutcomes": {
+        "pipelineGrowth": number,
+        "meetingsBooked": number,
+        "conversionRate": number,
+        "timeframe": string
+      },
+      "uniqueAdvantages": string[]
     }
   },
-  "marketMetrics": {
-    "marketSize": number,
-    "marketGrowthRate": number,
-    "competitionLevel": number,
-    "marketOpportunityScore": number,
-    "brandSafetyScore": number,
-    "marketShareGainPotential": {
-      "percentage": number,
-      "timeframe": string,
-      "requiredInvestment": number
-    }
-  },
-  "digitalMetrics": {
-    "socialMediaReach": number,
-    "websiteTraffic": number,
-    "mobileEngagement": number,
-    "searchVisibility": number,
-    "conversionRate": number,
-    "improvementPotential": [
-      {
-        "metric": string,
-        "currentValue": number,
-        "potentialValue": number,
-        "investmentNeeded": number,
-        "timeToAchieve": string
+  "successBlueprint": {
+    "implementationPlan": {
+      "phase1": {
+        "actions": string[],
+        "timeline": string,
+        "expectedOutcomes": string[]
+      },
+      "phase2": {
+        "actions": string[],
+        "timeline": string,
+        "expectedOutcomes": string[]
+      },
+      "phase3": {
+        "actions": string[],
+        "timeline": string,
+        "expectedOutcomes": string[]
       }
-    ]
-  },
-  "financialProjections": {
-    "currentState": {
-      "revenue": number,
-      "marketingCosts": number,
-      "customerAcquisitionCost": number,
-      "customerLifetimeValue": number
     },
-    "projectedState": {
-      "revenue": number,
-      "marketingCosts": number,
-      "customerAcquisitionCost": number,
-      "customerLifetimeValue": number,
-      "timeToAchieve": string
-    },
-    "roi": {
-      "threeMonths": number,
-      "sixMonths": number,
-      "twelveMonths": number,
-      "confidence": number
+    "provenResults": {
+      "caseStudies": [
+        {
+          "industry": string,
+          "challenge": string,
+          "solution": string,
+          "results": {
+            "pipelineGenerated": number,
+            "meetingsBooked": number,
+            "conversionRate": number,
+            "timeframe": string
+          }
+        }
+      ]
     }
   },
-  "competitiveAnalysis": {
-    "currentPosition": {
-      "strengths": string[],
-      "weaknesses": string[],
-      "opportunities": string[],
-      "threats": string[]
+  "collaborationFramework": {
+    "engagementModel": {
+      "approach": string,
+      "communicationStructure": string[],
+      "toolsAndTechnology": string[],
+      "reportingMetrics": string[]
     },
-    "marketLeaderGap": [
-      {
-        "metric": string,
-        "currentGap": number,
-        "closureTimeframe": string,
-        "requiredActions": string[]
+    "investmentAndReturns": {
+      "projectedROI": {
+        "threeMonths": number,
+        "sixMonths": number,
+        "twelveMonths": number
+      },
+      "successMetrics": {
+        "kpis": string[],
+        "benchmarks": {
+          "baseline": number,
+          "target": number,
+          "timeline": string
+        }
       }
-    ],
-    "competitorBenchmark": [
-      {
-        "competitor": string,
-        "leadingMetrics": string[],
-        "gainingMetrics": string[],
-        "lagingMetrics": string[]
-      }
-    ]
-  },
-  "recommendations": {
-    "immediate": {
-      "actions": string[],
-      "impact": number,
-      "cost": number,
-      "timeframe": string
-    },
-    "shortTerm": {
-      "actions": string[],
-      "impact": number,
-      "cost": number,
-      "timeframe": string
-    },
-    "longTerm": {
-      "actions": string[],
-      "impact": number,
-      "cost": number,
-      "timeframe": string
     }
-  }
+  },
+  "riskMitigation": {
+    "potentialChallenges": string[],
+    "mitigationStrategies": string[],
+    "contingencyPlans": string[]
+  },
+  "marketSharePercentage": number,
+  "industryGrowthRate": number,
+  "brandReputationScore": number,
+  "websiteTrafficMonthly": number,
+  "socialMediaFollowers": number,
+  "averageEngagementRate": number,
+  "customerAcquisitionCost": number,
+  "customerLifetimeValue": number,
+  "salesCycleDuration": string,
+  "competitorCount": number,
+  "marketSize": number,
+  "marketPenetration": number,
+  "techStackMaturity": "low" | "medium" | "high",
+  "digitalPresenceScore": number,
+  "brandAwarenessScore": number,
+  "leadQualityScore": number,
+  "marketingBudget": number,
+  "revenueTarget": number,
+  "primaryCompetitors": string[],
+  "industryTrends": string[],
+  "targetDemographics": string[],
+  "decisionMakers": string[],
+  "purchaseDrivers": string[],
+  "marketingEffectiveness": number,
+  "contentEngagement": number,
+  "channelPerformance": Record<string, number>,
+  "upcomingEvents": string[],
+  "regulatoryRequirements": string[],
+  "shortTermPrediction": string,
+  "mediumTermPrediction": string,
+  "longTermPrediction": string,
+  "estimatedMarketReach": number,
+  "brandSentiment": "positive" | "neutral" | "negative",
+  "competitiveAdvantages": string[],
+  "marketEntryBarriers": string[],
+  "growthOpportunities": string[]
 }
 
 Return ONLY valid JSON.`;

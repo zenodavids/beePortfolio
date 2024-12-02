@@ -13,6 +13,13 @@ import {
   FaSearch,
   FaDollarSign,
   FaRocket,
+  FaCheckCircle,
+  FaHandshake,
+  FaShieldAlt,
+  FaStar,
+  FaExclamationTriangle,
+  FaArrowRight,
+  FaCheck,
 } from "react-icons/fa";
 import {
   Chart as ChartJS,
@@ -58,348 +65,6 @@ const formatValue = (value, type = "number") => {
   }
   return value.toLocaleString();
 };
-
-// Revenue Impact Chart Component
-const RevenueImpactChart = ({ data }) => {
-  const chartData = {
-    labels: ["Current", "6 Months", "12 Months"],
-    datasets: [
-      {
-        label: "Revenue Projection",
-        data: [
-          data.financialProjections.currentState.revenue,
-          data.financialProjections.projectedState.revenue * 0.5,
-          data.financialProjections.projectedState.revenue,
-        ],
-        borderColor: "rgb(59, 130, 246)",
-        backgroundColor: "rgba(59, 130, 246, 0.1)",
-        fill: true,
-      },
-    ],
-  };
-
-  return (
-    <div className="quick-brand-check__chart-container">
-      <div className="quick-brand-check__chart-container-header">
-        <FaDollarSign className="icon icon--green" />
-        <div className="quick-brand-check__chart-container-header-content">
-          <h3>Revenue Impact</h3>
-          <p>How your revenue is expected to grow over time</p>
-        </div>
-      </div>
-      <div style={{ height: "300px" }}>
-        <Line
-          data={chartData}
-          options={{
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              y: {
-                beginAtZero: true,
-                ticks: {
-                  callback: (value) => formatValue(Number(value), "currency"),
-                },
-              },
-            },
-          }}
-        />
-      </div>
-    </div>
-  );
-};
-
-// Digital Performance Radar Chart
-const DigitalPerformanceChart = ({ data }) => {
-  const chartData = {
-    labels: [
-      "Social Media",
-      "Website Traffic",
-      "Mobile Engagement",
-      "Search Visibility",
-      "Conversion Rate",
-    ],
-    datasets: [
-      {
-        label: "Current Performance",
-        data: [
-          data.digitalMetrics.socialMediaReach,
-          data.digitalMetrics.websiteTraffic,
-          data.digitalMetrics.mobileEngagement,
-          data.digitalMetrics.searchVisibility,
-          data.digitalMetrics.conversionRate,
-        ],
-        backgroundColor: "rgba(99, 102, 241, 0.2)",
-        borderColor: "rgb(99, 102, 241)",
-        pointBackgroundColor: "rgb(99, 102, 241)",
-      },
-    ],
-  };
-
-  return (
-    <div className="quick-brand-check__chart-container">
-      <div className="quick-brand-check__chart-container-header">
-        <FaGlobe className="icon icon--indigo" />
-        <div className="quick-brand-check__chart-container-header-content">
-          <h3>Digital Performance</h3>
-          <p>How well you are doing online across different channels</p>
-        </div>
-      </div>
-      <div style={{ height: "400px" }}>
-        <Radar
-          data={chartData}
-          options={{
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              r: {
-                beginAtZero: true,
-                max: 100,
-              },
-            },
-          }}
-        />
-      </div>
-    </div>
-  );
-};
-
-// Core Metrics Display Component
-const CoreMetricsDisplay = ({ data }) => (
-  <div className="quick-brand-check__chart-container">
-    <div className="quick-brand-check__metrics-core-header">
-      <FaChartLine className="icon" />
-      <div>
-        <h3>Core Brand Metrics</h3>
-        <p>Important numbers for your brand</p>
-      </div>
-    </div>
-    <div className="quick-brand-check__metrics-core-grid">
-      {Object.entries(data.coreMetrics).map(
-        ([key, value]) =>
-          key !== "revenueImpact" && (
-            <div
-              key={key}
-              className="quick-brand-check__metrics-core-grid-item"
-            >
-              <p className="quick-brand-check__metrics-core-grid-item-label">
-                {key.replace(/([A-Z])/g, " $1").trim()}
-              </p>
-              <p className="quick-brand-check__metrics-core-grid-item-value">
-                {typeof value === "number"
-                  ? formatValue(value, "percentage")
-                  : String(value)}
-              </p>
-            </div>
-          )
-      )}
-    </div>
-  </div>
-);
-
-// Market Metrics Chart Component
-const MarketMetricsChart = ({ data }) => {
-  const { marketMetrics } = data;
-  return (
-    <div className="quick-brand-check__metrics-market-container">
-      <div className="quick-brand-check__metrics-market-header">
-        <FaGlobe className="icon" />
-        <div className="quick-brand-check__metrics-market-content">
-          <h3>Market Performance</h3>
-          <p>How you are doing in the market</p>
-        </div>
-      </div>
-      <div className="quick-brand-check__metrics-market-grid">
-        <div className="quick-brand-check__metrics-market-item">
-          {Object.entries(marketMetrics)
-            .filter(([key]) => key !== "marketShareGainPotential")
-            .map(([key, value]) => (
-              <div
-                key={key}
-                className="quick-brand-check__metrics-market-item-grid"
-              >
-                <p className="quick-brand-check__metrics-market-item-key">
-                  {key.replace(/([A-Z])/g, " $1").trim()}
-                </p>
-                <p className="quick-brand-check__metrics-market-item-value">
-                  {typeof value === "number"
-                    ? formatValue(
-                        value,
-                        key === "revenue" ? "currency" : "percentage"
-                      )
-                    : String(value)}
-                </p>
-              </div>
-            ))}
-        </div>
-        <div className="quick-brand-check__metrics-market-item">
-          <h4 className="quick-brand-check__metrics-market-item-header">
-            Market Share Gain Potential
-          </h4>
-          <p className="quick-brand-check__metrics-market-item-value">
-            {marketMetrics.marketShareGainPotential.percentage}%
-          </p>
-          <p className="quick-brand-check__metrics-market-item-subtext">
-            Timeline: {marketMetrics.marketShareGainPotential.timeframe}
-          </p>
-          <p className="quick-brand-check__metrics-market-item-subtext">
-            Investment:
-            {formatValue(
-              marketMetrics.marketShareGainPotential.requiredInvestment,
-              "currency"
-            )}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
-// Digital Improvement Potential Component
-const DigitalImprovementChart = ({ data }) => (
-  <div className="quick-brand-check__metrics-gap-analysis">
-    <div className="quick-brand-check__metrics-gap-analysis-item">
-      <div className="quick-brand-check__metrics-gap-analysis-item-header">
-        <FaMobile className="icon" />
-        <div className="quick-brand-check__metrics-gap-analysis-item-content">
-          <h3>Digital Improvement Opportunities</h3>
-          <p>Areas where you can grow online</p>
-        </div>
-      </div>
-      <div className="quick-brand-check__metrics-gap-analysis-item-grid">
-        {data.digitalMetrics.improvementPotential.map((item, index) => (
-          <div
-            key={index}
-            className="quick-brand-check__metrics-gap-analysis-item-grid-item"
-          >
-            <div className="quick-brand-check__metrics-gap-analysis-item-header">
-              <div className="quick-brand-check__metrics-gap-analysis-item-metric">
-                {item.metric}
-              </div>
-              <div className="quick-brand-check__metrics-gap-analysis-item-timeframe">
-                {item.timeToAchieve}
-              </div>
-            </div>
-            <div className="quick-brand-check__metrics-gap-analysis-item-progress">
-              <div
-                className="quick-brand-check__metrics-gap-analysis-item-progress-bar"
-                style={{ width: `${item.currentValue}%` }}
-              ></div>
-              <div
-                className="quick-brand-check__metrics-gap-analysis-item-progress-bar"
-                style={{ width: `${item.potentialValue - item.currentValue}%` }}
-              ></div>
-            </div>
-            <p className="quick-brand-check__metrics-gap-analysis-item-subtext">
-              Investment needed:{" "}
-              {formatValue(item.investmentNeeded, "currency")}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-);
-
-// Financial State Comparison Component
-const FinancialStateComparison = ({ data }) => (
-  <div className="quick-brand-check__metrics-gap-analysis">
-    <div className="quick-brand-check__metrics-gap-analysis-item">
-      <div className="quick-brand-check__metrics-gap-analysis-item-header">
-        <FaDollarSign className="icon" />
-        <div className="quick-brand-check__metrics-gap-analysis-item-content">
-          <h3>Financial State Comparison</h3>
-          <p>Current vs Projected Performance</p>
-        </div>
-      </div>
-      <div className="quick-brand-check__metrics-gap-analysis-item-grid">
-        <div className="quick-brand-check__metrics-gap-analysis-item-grid-item">
-          <h4 className="quick-brand-check__metrics-gap-analysis-item-header">
-            Current State
-          </h4>
-          {Object.entries(data.financialProjections.currentState).map(
-            ([key, value]) => (
-              <div
-                key={key}
-                className="quick-brand-check__metrics-gap-analysis-item-grid-item-grid"
-              >
-                <p className="quick-brand-check__metrics-gap-analysis-item-grid-item-key">
-                  {key.replace(/([A-Z])/g, " $1").trim()}
-                </p>
-                <p className="quick-brand-check__metrics-gap-analysis-item-grid-item-value">
-                  {typeof value === "number"
-                    ? formatValue(value, "currency")
-                    : String(value)}
-                </p>
-              </div>
-            )
-          )}
-        </div>
-        <div className="quick-brand-check__metrics-gap-analysis-item-grid-item">
-          <h4 className="quick-brand-check__metrics-gap-analysis-item-header">
-            Projected State (
-            {data.financialProjections.projectedState.timeToAchieve})
-          </h4>
-          {Object.entries(data.financialProjections.projectedState)
-            .filter(([key]) => key !== "timeToAchieve")
-            .map(([key, value]) => (
-              <div
-                key={key}
-                className="quick-brand-check__metrics-gap-analysis-item-grid-item-grid"
-              >
-                <p className="quick-brand-check__metrics-gap-analysis-item-grid-item-key">
-                  {key.replace(/([A-Z])/g, " $1").trim()}
-                </p>
-                <p className="quick-brand-check__metrics-gap-analysis-item-grid-item-value">
-                  {typeof value === "number"
-                    ? formatValue(value, "currency")
-                    : String(value)}
-                </p>
-              </div>
-            ))}
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-// Competitor Benchmark Component
-const CompetitorBenchmark = ({ data }) => (
-  <div className="quick-brand-check__chart-container">
-    <div className="quick-brand-check__chart-container-header">
-      <FaChartLine className="icon" />
-      <div className="quick-brand-check__chart-container-header-content">
-        <h3>Competitor Benchmark</h3>
-        <p>See how you compare to your competitors</p>
-      </div>
-    </div>
-    <div className="quick-brand-check__competitor-grid">
-      {data.competitiveAnalysis.competitorBenchmark.map((competitor, index) => (
-        <div key={index} className="quick-brand-check__competitor-card">
-          <h4>{competitor.competitor}</h4>
-          <div className="quick-brand-check__metric-groups">
-            <div className="metric-group leading">
-              <span className="label">Leading In</span>
-              {competitor.leadingMetrics.map((metric, idx) => (
-                <div key={idx} className="metric-item">
-                  <span className="bullet leading">●</span>
-                  {metric}
-                </div>
-              ))}
-            </div>
-            <div className="metric-group gaining">
-              <span className="label">Gaining Ground</span>
-              {competitor.gainingMetrics.map((metric, idx) => (
-                <div key={idx} className="metric-item">
-                  <span className="bullet gaining">●</span>
-                  {metric}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
 
 const DAILY_LIMIT = 30; // Number of free uses per day
 const STORAGE_KEY = "brand_health_usage";
@@ -472,14 +137,15 @@ export default function QuickBrandCheck() {
     }
   };
 
-  // ROI Projection Chart
+  // Money Return Guess Chart
+  // How much money you might get back
   const ROIProjectionChart = ({ data }) => (
     <div className="quick-brand-check__chart-container">
       <div className="quick-brand-check__chart-container-header">
         <FaChartLine className="icon" />
         <div className="quick-brand-check__chart-container-header-content">
-          <h3>ROI Projections</h3>
-          <p>Expected return on investment</p>
+          <h3>Money Return Guess</h3>
+          <p>How much money you might get back</p>
         </div>
       </div>
       <div className="quick-brand-check__chart-container-content">
@@ -490,7 +156,7 @@ export default function QuickBrandCheck() {
                 labels: ["3 Months", "6 Months", "12 Months"],
                 datasets: [
                   {
-                    label: "Projected ROI",
+                    label: "Guessed Money Return",
                     data: [
                       data.financialProjections.roi.threeMonths,
                       data.financialProjections.roi.sixMonths,
@@ -524,14 +190,15 @@ export default function QuickBrandCheck() {
     </div>
   );
 
-  // Market Share Potential Chart
+  // Market Share Possibility Chart
+  // How much of the market you might get
   const MarketShareChart = ({ data }) => (
     <div className="quick-brand-check__chart-container">
       <div className="quick-brand-check__chart-container-header">
         <FaRocket className="icon" />
         <div className="quick-brand-check__chart-container-header-content">
-          <h3>Market Share Potential</h3>
-          <p>How much of the market you can capture</p>
+          <h3>Market Share Possibility</h3>
+          <p>How much of the market you might get</p>
         </div>
       </div>
       <div className="quick-brand-check__chart-container-content">
@@ -539,7 +206,7 @@ export default function QuickBrandCheck() {
           <div className="quick-brand-check__chart-container-content-grid-item">
             <Doughnut
               data={{
-                labels: ["Current Share", "Potential Gain", "Remaining Market"],
+                labels: ["Current Share", "Possible Gain", "Remaining Market"],
                 datasets: [
                   {
                     data: [
@@ -587,14 +254,15 @@ export default function QuickBrandCheck() {
     </div>
   );
 
-  // Competitive Analysis Section
+  // How You Compare to Others
+  // Where you stand in the market
   const CompetitiveAnalysis = ({ data }) => (
     <div className="quick-brand-check__metrics-competitive-position">
       <div className="quick-brand-check__metrics-competitive-position-header">
         <FaHashtag className="icon" />
         <div className="quick-brand-check__metrics-competitive-position-content">
-          <h3>Competitive Position</h3>
-          <p>Where you stand compared to others</p>
+          <h3>How You Compare to Others</h3>
+          <p>Where you stand in the market</p>
         </div>
       </div>
       <div className="quick-brand-check__metrics-competitive-position-grid">
@@ -625,14 +293,16 @@ export default function QuickBrandCheck() {
   );
 
   // New Components
+  // Catching Up to the Best
+  // How to become as good as the top company
   const MarketLeaderGapChart = ({ data }) => (
     <div className="quick-brand-check__metrics-gap-analysis">
       <div className="quick-brand-check__metrics-gap-analysis-item">
         <div className="quick-brand-check__metrics-gap-analysis-item-header">
           <FaChartLine className="icon" />
           <div className="quick-brand-check__metrics-gap-analysis-item-content">
-            <h3>Market Leader Gap Analysis</h3>
-            <p>How far you are from being the market leader</p>
+            <h3>Catching Up to the Best</h3>
+            <p>How to become as good as the top company</p>
           </div>
         </div>
         <div className="quick-brand-check__metrics-gap-analysis-item-grid">
@@ -672,13 +342,15 @@ export default function QuickBrandCheck() {
     </div>
   );
 
+  // Action Plan
+  // What to do and when to do it
   const RecommendationsTimeline = ({ data }) => (
     <div className="quick-brand-check__metrics-action-timeline">
       <div className="quick-brand-check__metrics-action-timeline-header">
         <FaRocket className="icon" />
         <div className="quick-brand-check__metrics-action-timeline-content">
-          <h3>Action Timeline</h3>
-          <p>Steps you should take and when</p>
+          <h3>Action Plan</h3>
+          <p>What to do and when to do it</p>
         </div>
       </div>
       <div className="quick-brand-check__metrics-action-timeline-grid">
@@ -701,7 +373,7 @@ export default function QuickBrandCheck() {
                   </p>
                   <div className="quick-brand-check__metrics-action-timeline-grid-item-grid-item-impact">
                     <span className="quick-brand-check__metrics-action-timeline-grid-item-grid-item-impact-label">
-                      Impact: {details.impact}%
+                      Effect: {details.impact}%
                     </span>
                     <span className="quick-brand-check__metrics-action-timeline-grid-item-grid-item-impact-value">
                       Cost: {formatValue(details.cost, "currency")}
@@ -712,6 +384,631 @@ export default function QuickBrandCheck() {
             </div>
           </div>
         ))}
+      </div>
+    </div>
+  );
+
+  // Chance Check
+  // Looking at your business opportunities
+  const OpportunityAssessment = ({ data }) => (
+    <div className="quick-brand-check__section">
+      <div className="quick-brand-check__section-header">
+        <FaBullseye className="icon" />
+        <h3>Chance Check</h3>
+      </div>
+
+      <div className="quick-brand-check__grid">
+        {/* Problems Card */}
+        <div className="quick-brand-check__card">
+          <h4>Current Problems</h4>
+          <ul className="quick-brand-check__list">
+            {data.opportunityAssessment.painPoints.currentChallenges.map(
+              (challenge, i) => (
+                <li key={i}>{challenge}</li>
+              )
+            )}
+          </ul>
+          <div className="quick-brand-check__impact-metric">
+            <span>Possible Money Impact</span>
+            <strong>
+              {formatValue(
+                data.opportunityAssessment.painPoints.revenueImpact,
+                "currency"
+              )}
+            </strong>
+          </div>
+        </div>
+
+        {/* Why You're Good Card */}
+        <div className="quick-brand-check__card">
+          <h4>Why You're Good</h4>
+          <div className="quick-brand-check__metrics-grid">
+            <div className="quick-brand-check__metric">
+              <span>New Customers</span>
+              <strong>
+                {formatValue(
+                  data.opportunityAssessment.valueProposition.projectedOutcomes
+                    .pipelineGrowth,
+                  "currency"
+                )}
+              </strong>
+            </div>
+            <div className="quick-brand-check__metric">
+              <span>Expected Talks</span>
+              <strong>
+                {
+                  data.opportunityAssessment.valueProposition.projectedOutcomes
+                    .meetingsBooked
+                }
+              </strong>
+            </div>
+            <div className="quick-brand-check__metric">
+              <span>Sales Success Rate</span>
+              <strong>
+                {formatValue(
+                  data.opportunityAssessment.valueProposition.projectedOutcomes
+                    .conversionRate,
+                  "percentage"
+                )}
+              </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Plan for Success
+  // Steps to make your business better
+  const SuccessBlueprint = ({ data }) => (
+    <div className="quick-brand-check__section">
+      <div className="quick-brand-check__section-header">
+        <FaRocket className="icon" />
+        <div className="quick-brand-check__section-header-content">
+          <h3>Plan for Success</h3>
+          <p>Strategic roadmap to achieve your goals</p>
+        </div>
+      </div>
+
+      <div className="quick-brand-check__blueprint">
+        {Object.entries(data.successBlueprint.implementationPlan).map(
+          ([phase, details], index) => (
+            <div key={phase} className="quick-brand-check__blueprint-phase">
+              <div className="quick-brand-check__blueprint-phase-header">
+                <div className="quick-brand-check__blueprint-phase-number">
+                  {index + 1}
+                </div>
+                <div className="quick-brand-check__blueprint-phase-info">
+                  <h4>Phase {index + 1}</h4>
+                  <span>{details.timeline}</span>
+                </div>
+              </div>
+
+              <div className="quick-brand-check__blueprint-content">
+                <div className="quick-brand-check__blueprint-actions">
+                  {details.actions.map((action, i) => (
+                    <div
+                      key={i}
+                      className="quick-brand-check__blueprint-action"
+                    >
+                      <FaCheckCircle className="icon icon--success" />
+                      <span>{action}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="quick-brand-check__blueprint-outcomes">
+                  <h5>Expected Outcomes</h5>
+                  <div className="quick-brand-check__blueprint-outcomes-list">
+                    {details.expectedOutcomes.map((outcome, i) => (
+                      <div
+                        key={i}
+                        className="quick-brand-check__blueprint-outcome"
+                      >
+                        <FaArrowRight className="icon icon--info" />
+                        <span>{outcome}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        )}
+      </div>
+    </div>
+  );
+
+  // Case Studies Section
+  const CaseStudies = ({ data }) => (
+    <div className="quick-brand-check__section">
+      <div className="quick-brand-check__section-header">
+        <FaCheckCircle className="icon" />
+        <div className="quick-brand-check__section-header-content">
+          <h3>Proven Results</h3>
+          <p>Success stories from similar partnerships</p>
+        </div>
+      </div>
+
+      <div className="quick-brand-check__case-studies">
+        {data.successBlueprint.provenResults.caseStudies.map((study, index) => (
+          <div key={index} className="quick-brand-check__case-study">
+            <div className="quick-brand-check__case-study-header">
+              <div className="quick-brand-check__case-study-info">
+                <h4>{study.industry}</h4>
+                <span className="quick-brand-check__case-study-timeline">
+                  {study.timeframe}
+                </span>
+              </div>
+              <div className="quick-brand-check__case-study-badge">
+                Success Story
+              </div>
+            </div>
+
+            <div className="quick-brand-check__case-study-content">
+              <div className="quick-brand-check__case-study-section">
+                <h5>Challenge</h5>
+                <p>{study.challenge}</p>
+              </div>
+              <div className="quick-brand-check__case-study-section">
+                <h5>Our Solution</h5>
+                <p>{study.solution}</p>
+              </div>
+            </div>
+
+            <div className="quick-brand-check__case-study-results">
+              <div className="quick-brand-check__case-study-metric">
+                <FaChartLine className="icon icon--success" />
+                <div>
+                  <span>Pipeline Generated</span>
+                  <strong>
+                    {formatValue(study.results.pipelineGenerated, "currency")}
+                  </strong>
+                </div>
+              </div>
+              <div className="quick-brand-check__case-study-metric">
+                <FaHandshake className="icon icon--primary" />
+                <div>
+                  <span>Meetings Booked</span>
+                  <strong>{study.results.meetingsBooked}</strong>
+                </div>
+              </div>
+              <div className="quick-brand-check__case-study-metric">
+                <FaRocket className="icon icon--info" />
+                <div>
+                  <span>Conversion Rate</span>
+                  <strong>
+                    {formatValue(study.results.conversionRate, "percentage")}
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  // Collaboration Framework Component
+  const CollaborationFramework = ({ data }) => (
+    <div className="quick-brand-check__section">
+      <div className="quick-brand-check__section-header">
+        <FaHandshake className="icon" />
+        <div className="quick-brand-check__section-header-content">
+          <h3>Collaboration Framework</h3>
+          <p>How we'll work together to achieve success</p>
+        </div>
+      </div>
+
+      <div className="quick-brand-check__collaboration">
+        <div className="quick-brand-check__collaboration-card">
+          <div className="quick-brand-check__collaboration-header">
+            <FaRocket className="icon icon--primary" />
+            <h4>Engagement Approach</h4>
+          </div>
+          <p>{data.collaborationFramework.engagementModel.approach}</p>
+          <div className="quick-brand-check__collaboration-tools">
+            <h5>Tools & Technology Stack</h5>
+            <div className="quick-brand-check__tag-container">
+              {data.collaborationFramework.engagementModel.toolsAndTechnology.map(
+                (tool, i) => (
+                  <span key={i} className="quick-brand-check__tag">
+                    {tool}
+                  </span>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="quick-brand-check__collaboration-card">
+          <div className="quick-brand-check__collaboration-header">
+            <FaChartLine className="icon icon--success" />
+            <h4>ROI Timeline</h4>
+          </div>
+          <div className="quick-brand-check__roi-timeline">
+            {Object.entries(
+              data.collaborationFramework.investmentAndReturns.projectedROI
+            ).map(([period, value]) => (
+              <div key={period} className="quick-brand-check__roi-milestone">
+                <div className="quick-brand-check__roi-period">
+                  <strong>{period.replace(/([A-Z])/g, " $1").trim()}</strong>
+                  <span>Expected Return</span>
+                </div>
+                <div className="quick-brand-check__roi-value">
+                  {formatValue(value, "percentage")}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Risk Mitigation Component
+  const RiskMitigation = ({ data }) => (
+    <div className="quick-brand-check__section">
+      <div className="quick-brand-check__section-header">
+        <FaShieldAlt className="icon" />
+        <h3>Risk Management</h3>
+      </div>
+
+      <div className="quick-brand-check__risk-grid">
+        {/* Challenges */}
+        <div className="quick-brand-check__card">
+          <h4>Potential Challenges</h4>
+          <ul className="quick-brand-check__risk-list">
+            {data.riskMitigation.potentialChallenges.map((challenge, i) => (
+              <li key={i}>{challenge}</li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Mitigation Strategies */}
+        <div className="quick-brand-check__card">
+          <h4>Mitigation Strategies</h4>
+          <ul className="quick-brand-check__risk-list">
+            {data.riskMitigation.mitigationStrategies.map((strategy, i) => (
+              <li key={i}>{strategy}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Market Intelligence Dashboard
+  const MarketIntelligence = ({ data }) => {
+    const marketMetricsData = {
+      labels: [
+        "Market Share",
+        "Industry Growth",
+        "Brand Reputation",
+        "Digital Presence",
+      ],
+      datasets: [
+        {
+          label: "Current Performance",
+          data: [
+            data.marketSharePercentage,
+            data.industryGrowthRate,
+            data.brandReputationScore,
+            data.digitalPresenceScore,
+          ],
+          backgroundColor: "rgba(59, 130, 246, 0.2)",
+          borderColor: "rgb(59, 130, 246)",
+          borderWidth: 2,
+        },
+      ],
+    };
+
+    return (
+      <div className="quick-brand-check__section">
+        <div className="quick-brand-check__metrics-grid">
+          {/* Make radar chart responsive */}
+          <div className="quick-brand-check__radar-chart">
+            <Radar
+              data={marketMetricsData}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  r: {
+                    ticks: {
+                      display: window.innerWidth > 480, // Hide ticks on mobile
+                    },
+                  },
+                },
+              }}
+            />
+          </div>
+
+          <div className="quick-brand-check__metrics-cards">
+            {/* Convert to scrollable grid on mobile */}
+            <div className="quick-brand-check__metrics-scroll">
+              <div className="quick-brand-check__metric-card">
+                <span>Website Traffic</span>
+                <strong>
+                  {formatValue(data.websiteTrafficMonthly, "number")}
+                </strong>
+              </div>
+              <div className="quick-brand-check__metric-card">
+                <span>Social Following</span>
+                <strong>
+                  {formatValue(data.socialMediaFollowers, "number")}
+                </strong>
+              </div>
+              <div className="quick-brand-check__metric-card">
+                <span>Brand Awareness</span>
+                <strong>
+                  {formatValue(data.brandAwarenessScore, "percentage")}
+                </strong>
+              </div>
+              <div className="quick-brand-check__metric-card">
+                <span>Lead Quality</span>
+                <strong>
+                  {formatValue(data.leadQualityScore, "percentage")}
+                </strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Financial Metrics Component
+  const FinancialMetrics = ({ data }) => {
+    const costData = {
+      labels: ["Q1", "Q2", "Q3", "Q4"],
+      datasets: [
+        {
+          label: "Customer Acquisition Cost Trend",
+          data: [
+            data.customerAcquisitionCost * 0.85,
+            data.customerAcquisitionCost * 0.9,
+            data.customerAcquisitionCost * 0.95,
+            data.customerAcquisitionCost,
+          ],
+          backgroundColor: "rgba(99, 102, 241, 0.2)",
+          borderColor: "rgba(99, 102, 241, 1)",
+          borderWidth: 2,
+          tension: 0.4,
+        },
+      ],
+    };
+
+    return (
+      <div className="quick-brand-check__section">
+        <div className="quick-brand-check__section-header">
+          <FaDollarSign className="icon" />
+          <div className="quick-brand-check__section-header-content">
+            <h3>Financial Overview</h3>
+            <p>Key metrics and performance indicators</p>
+          </div>
+        </div>
+
+        <div className="quick-brand-check__financial">
+          <div className="quick-brand-check__financial-metrics">
+            <div className="quick-brand-check__financial-card">
+              <div className="quick-brand-check__financial-card-header">
+                <FaChartLine className="icon icon--success" />
+                <h4>Customer Lifetime Value</h4>
+              </div>
+              <div className="quick-brand-check__financial-value">
+                <strong>
+                  {formatValue(data.customerLifetimeValue, "currency")}
+                </strong>
+                <span>Per Customer Average</span>
+              </div>
+            </div>
+
+            <div className="quick-brand-check__financial-card">
+              <div className="quick-brand-check__financial-card-header">
+                <FaBullseye className="icon icon--primary" />
+                <h4>Marketing Budget</h4>
+              </div>
+              <div className="quick-brand-check__financial-value">
+                <strong>{formatValue(data.marketingBudget, "currency")}</strong>
+                <span>Quarterly Allocation</span>
+              </div>
+            </div>
+
+            <div className="quick-brand-check__financial-card">
+              <div className="quick-brand-check__financial-card-header">
+                <FaRocket className="icon icon--info" />
+                <h4>Revenue Target</h4>
+              </div>
+              <div className="quick-brand-check__financial-value">
+                <strong>{formatValue(data.revenueTarget, "currency")}</strong>
+                <span>Annual Goal</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="quick-brand-check__financial-chart">
+            <div className="quick-brand-check__financial-chart-header">
+              <h4>Customer Acquisition Cost Trend</h4>
+              <span>Quarterly Projection</span>
+            </div>
+            <div className="quick-brand-check__financial-chart-container">
+              <Bar
+                data={costData}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    legend: {
+                      display: false,
+                    },
+                  },
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                      grid: {
+                        display: true,
+                        color: "rgba(0, 0, 0, 0.05)",
+                      },
+                      ticks: {
+                        callback: (value) =>
+                          formatValue(Number(value), "currency"),
+                      },
+                    },
+                    x: {
+                      grid: {
+                        display: false,
+                      },
+                    },
+                  },
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Market Trends & Predictions
+  const MarketTrends = ({ data }) => (
+    <div className="quick-brand-check__section">
+      <div className="quick-brand-check__section-header">
+        <FaGlobe className="icon" />
+        <h3>Market Trends & Predictions</h3>
+      </div>
+
+      <div className="quick-brand-check__trends-grid">
+        <div className="quick-brand-check__trends-list">
+          <h4>Industry Trends</h4>
+          <ul>
+            {data.industryTrends.map((trend, i) => (
+              <li key={i}>{trend}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="quick-brand-check__predictions">
+          <div className="quick-brand-check__prediction">
+            <span>Short Term</span>
+            <p>{data.shortTermPrediction}</p>
+          </div>
+          <div className="quick-brand-check__prediction">
+            <span>Medium Term</span>
+            <p>{data.mediumTermPrediction}</p>
+          </div>
+          <div className="quick-brand-check__prediction">
+            <span>Long Term</span>
+            <p>{data.longTermPrediction}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const MarketOverview = ({ data }) => (
+    <div className="quick-brand-check__section">
+      <div className="quick-brand-check__section-header">
+        <FaSearch className="icon" />
+        <div className="quick-brand-check__section-header-content">
+          <h3>Market Overview</h3>
+          <p>Detailed insights about your market position</p>
+        </div>
+      </div>
+
+      <div className="quick-brand-check__market-overview">
+        {/* Key Metrics Cards */}
+        <div className="quick-brand-check__metrics-scroll">
+          <div className="quick-brand-check__metric-card">
+            <span>Sales Cycle</span>
+            <strong>{data.salesCycleDuration}</strong>
+          </div>
+          <div className="quick-brand-check__metric-card">
+            <span>Competitors</span>
+            <strong>{data.competitorCount}</strong>
+          </div>
+          <div className="quick-brand-check__metric-card">
+            <span>Market Size</span>
+            <strong>{formatValue(data.marketSize, "currency")}</strong>
+          </div>
+          <div className="quick-brand-check__metric-card">
+            <span>Market Share</span>
+            <strong>{formatValue(data.marketPenetration, "percentage")}</strong>
+          </div>
+        </div>
+
+        {/* Market Analysis */}
+        <div className="quick-brand-check__analysis-container">
+          <div className="quick-brand-check__analysis-section">
+            <h4>Target Demographics</h4>
+            <div className="quick-brand-check__tag-container">
+              {data.targetDemographics.map((demo, i) => (
+                <span key={i} className="quick-brand-check__tag">
+                  {demo}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="quick-brand-check__analysis-section">
+            <h4>Key Decision Makers</h4>
+            <div className="quick-brand-check__tag-container">
+              {data.decisionMakers.map((maker, i) => (
+                <span key={i} className="quick-brand-check__tag">
+                  {maker}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Competitive Analysis */}
+        <div className="quick-brand-check__competitive-container">
+          <div className="quick-brand-check__competitive-section">
+            <h4>
+              <FaStar className="icon icon--small" />
+              Competitive Advantages
+            </h4>
+            <div className="quick-brand-check__list-container">
+              {data.competitiveAdvantages.map((advantage, i) => (
+                <div key={i} className="quick-brand-check__list-item">
+                  <FaCheck className="icon icon--success" />
+                  <span>{advantage}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="quick-brand-check__competitive-section">
+            <h4>
+              <FaShieldAlt className="icon icon--small" />
+              Market Entry Barriers
+            </h4>
+            <div className="quick-brand-check__list-container">
+              {data.marketEntryBarriers.map((barrier, i) => (
+                <div key={i} className="quick-brand-check__list-item">
+                  <FaExclamationTriangle className="icon icon--warning" />
+                  <span>{barrier}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="quick-brand-check__competitive-section">
+            <h4>
+              <FaRocket className="icon icon--small" />
+              Growth Opportunities
+            </h4>
+            <div className="quick-brand-check__list-container">
+              {data.growthOpportunities.map((opportunity, i) => (
+                <div key={i} className="quick-brand-check__list-item">
+                  <FaArrowRight className="icon icon--info" />
+                  <span>{opportunity}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -751,14 +1048,16 @@ export default function QuickBrandCheck() {
                   <div className="quick-brand-check__form-limit">
                     {`${remainingChecks} free checks remaining today`}
                   </div>
+
                   <div className="quick-brand-check__form-fields">
                     <div className="quick-brand-check__form-group">
-                      <label>Brand Name</label>
+                      <label htmlFor="brandName">Company Name</label>
                       <input
+                        id="brandName"
                         type="text"
                         required
                         value={formData.brandName}
-                        placeholder="For example: Tesla"
+                        placeholder="For example: Acme Corp"
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -767,13 +1066,15 @@ export default function QuickBrandCheck() {
                         }
                       />
                     </div>
+
                     <div className="quick-brand-check__form-group">
-                      <label>Industry</label>
+                      <label htmlFor="industry">Industry</label>
                       <input
+                        id="industry"
                         type="text"
                         required
                         value={formData.industry}
-                        placeholder="For example: Automotive & Clean Energy"
+                        placeholder="For example: SaaS / Technology"
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -782,13 +1083,55 @@ export default function QuickBrandCheck() {
                         }
                       />
                     </div>
+
                     <div className="quick-brand-check__form-group">
-                      <label>Marketing Channels</label>
+                      <label htmlFor="companySize">Company Size</label>
+                      <select
+                        id="companySize"
+                        required
+                        value={formData.companySize}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            companySize: e.target.value,
+                          })
+                        }
+                      >
+                        <option value="">Select company size</option>
+                        <option value="1-50">1-50 employees</option>
+                        <option value="51-200">51-200 employees</option>
+                        <option value="201-500">201-500 employees</option>
+                        <option value="501+">501+ employees</option>
+                      </select>
+                    </div>
+
+                    <div className="quick-brand-check__form-group">
+                      <label htmlFor="targetMarket">Target Market</label>
                       <input
+                        id="targetMarket"
+                        type="text"
+                        required
+                        value={formData.targetMarket}
+                        placeholder="For example: Enterprise B2B Companies"
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            targetMarket: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+
+                    <div className="quick-brand-check__form-group full-width">
+                      <label htmlFor="marketingChannels">
+                        Current Marketing Channels
+                      </label>
+                      <input
+                        id="marketingChannels"
                         type="text"
                         required
                         value={formData.marketingChannels}
-                        placeholder="For example: Social Media (X/Twitter), Website Direct Sales, Showrooms, PR Events"
+                        placeholder="For example: LinkedIn, Email, Events, Direct Sales"
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -797,12 +1140,16 @@ export default function QuickBrandCheck() {
                         }
                       />
                     </div>
-                    <div className="quick-brand-check__form-group">
-                      <label>Current Challenges</label>
+
+                    <div className="quick-brand-check__form-group full-width">
+                      <label htmlFor="currentChallenges">
+                        Current Challenges
+                      </label>
                       <textarea
+                        id="currentChallenges"
                         required
                         value={formData.currentChallenges}
-                        placeholder="For example: Increasing competition in EV market, production scalability, pricing pressure from competitors, regulatory challenges in different markets"
+                        placeholder="Describe your main business challenges and goals..."
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -812,30 +1159,33 @@ export default function QuickBrandCheck() {
                       />
                     </div>
                   </div>
+
                   <button
                     type="submit"
                     disabled={loading}
                     className="quick-brand-check__submit"
                   >
-                    {loading ? "Analyzing..." : "Analyze Brand"}
+                    {loading ? (
+                      <span className="quick-brand-check__loading">
+                        <span className="quick-brand-check__loading-spinner"></span>
+                        Analyzing...
+                      </span>
+                    ) : (
+                      "Analyze Opportunity"
+                    )}
                   </button>
                 </form>
               ) : (
                 <div className="quick-brand-check__results">
-                  <div className="quick-brand-check__charts">
-                    <CoreMetricsDisplay data={result} />
-                    <MarketMetricsChart data={result} />
-                    <RevenueImpactChart data={result} />
-                    <DigitalPerformanceChart data={result} />
-                    <DigitalImprovementChart data={result} />
-                    <ROIProjectionChart data={result} />
-                    <FinancialStateComparison data={result} />
-                    <CompetitiveAnalysis data={result} />
-                    <CompetitorBenchmark data={result} />
-                    <MarketLeaderGapChart data={result} />
-                    <MarketShareChart data={result} />
-                  </div>
-                  <RecommendationsTimeline data={result} />
+                  <MarketOverview data={result} />
+                  <MarketIntelligence data={result} />
+                  <FinancialMetrics data={result} />
+                  <MarketTrends data={result} />
+                  <OpportunityAssessment data={result} />
+                  <SuccessBlueprint data={result} />
+                  <CaseStudies data={result} />
+                  <CollaborationFramework data={result} />
+                  <RiskMitigation data={result} />
                 </div>
               )}
             </div>

@@ -54,13 +54,12 @@ const Header = () => (
               options={{
                 strings: [
                   "LinkedIn Marketing",
-
-                  "Lead Generation",
-                  "Sales Outreach",
+                  "Sales Development Representative",
+                  "Lead Generation Specialist",
+                  "Outbound Prospecting Expert",
                   "Inbound Sales",
-                  "Outbound Sales",
-                  "SEO Specialist",
-                  "Digital Marketing",
+                  "Pipeline Development",
+                  "Account Research",
 
                   "Google Analytics",
                 ],
