@@ -399,63 +399,99 @@ export default function QuickBrandCheck() {
     <div className="quick-brand-check__section">
       <div className="quick-brand-check__section-header">
         <FaBullseye className="icon" />
-        <h3>Chance Check</h3>
+        <div className="quick-brand-check__section-header-content">
+          <h3>Chance Check</h3>
+          <p>Looking at your business opportunities</p>
+        </div>
       </div>
 
-      <div className="quick-brand-check__grid">
+      <div className="quick-brand-check__opportunity-grid">
         {/* Problems Card */}
-        <div className="quick-brand-check__card">
-          <h4>Current Problems</h4>
-          <ul className="quick-brand-check__list">
+        <div className="quick-brand-check__opportunity-card">
+          <div className="quick-brand-check__opportunity-header">
+            <div className="quick-brand-check__opportunity-icon-wrapper warning">
+              <FaExclamationTriangle className="icon" />
+            </div>
+            <h4>Current Problems</h4>
+          </div>
+          <ul className="quick-brand-check__challenges-list">
             {data.opportunityAssessment.painPoints.currentChallenges.map(
               (challenge, i) => (
-                <li key={i}>{challenge}</li>
+                <li key={i} className="challenge-item">
+                  <div className="challenge-marker"></div>
+                  <span>{challenge}</span>
+                </li>
               )
             )}
           </ul>
           <div className="quick-brand-check__impact-metric">
-            <span>Possible Money Impact</span>
-            <strong>
-              {formatValue(
-                data.opportunityAssessment.painPoints.revenueImpact,
-                "currency"
-              )}
-            </strong>
-          </div>
-        </div>
-
-        {/* Why You're Good Card */}
-        <div className="quick-brand-check__card">
-          <h4>Why You're Good</h4>
-          <div className="quick-brand-check__metrics-grid">
-            <div className="quick-brand-check__metric">
-              <span>New Customers</span>
+            <div className="impact-icon-wrapper">
+              <FaDollarSign className="icon" />
+            </div>
+            <div className="impact-content">
+              <span>Possible Money Impact</span>
               <strong>
                 {formatValue(
-                  data.opportunityAssessment.valueProposition.projectedOutcomes
-                    .pipelineGrowth,
+                  data.opportunityAssessment.painPoints.revenueImpact,
                   "currency"
                 )}
               </strong>
             </div>
-            <div className="quick-brand-check__metric">
-              <span>Expected Talks</span>
-              <strong>
-                {
-                  data.opportunityAssessment.valueProposition.projectedOutcomes
-                    .meetingsBooked
-                }
-              </strong>
+          </div>
+        </div>
+
+        {/* Why You're Good Card */}
+        <div className="quick-brand-check__opportunity-card">
+          <div className="quick-brand-check__opportunity-header">
+            <div className="quick-brand-check__opportunity-icon-wrapper success">
+              <FaStar className="icon" />
             </div>
-            <div className="quick-brand-check__metric">
-              <span>Sales Success Rate</span>
-              <strong>
-                {formatValue(
-                  data.opportunityAssessment.valueProposition.projectedOutcomes
-                    .conversionRate,
-                  "percentage"
-                )}
-              </strong>
+            <h4>Why You're Good</h4>
+          </div>
+          <div className="quick-brand-check__metrics-container">
+            <div className="metric-card">
+              <div className="metric-icon-wrapper primary">
+                <FaUsers className="icon" />
+              </div>
+              <div className="metric-content">
+                <span>New Customers</span>
+                <strong>
+                  {formatValue(
+                    data.opportunityAssessment.valueProposition
+                      .projectedOutcomes.pipelineGrowth,
+                    "currency"
+                  )}
+                </strong>
+              </div>
+            </div>
+            <div className="metric-card">
+              <div className="metric-icon-wrapper info">
+                <FaHandshake className="icon" />
+              </div>
+              <div className="metric-content">
+                <span>Expected Talks</span>
+                <strong>
+                  {
+                    data.opportunityAssessment.valueProposition
+                      .projectedOutcomes.meetingsBooked
+                  }
+                </strong>
+              </div>
+            </div>
+            <div className="metric-card">
+              <div className="metric-icon-wrapper success">
+                <FaChartLine className="icon" />
+              </div>
+              <div className="metric-content">
+                <span>Sales Success Rate</span>
+                <strong>
+                  {formatValue(
+                    data.opportunityAssessment.valueProposition
+                      .projectedOutcomes.conversionRate,
+                    "percentage"
+                  )}
+                </strong>
+              </div>
             </div>
           </div>
         </div>
@@ -614,36 +650,106 @@ export default function QuickBrandCheck() {
       <div className="quick-brand-check__section-header">
         <FaHandshake className="icon" />
         <div className="quick-brand-check__section-header-content">
-          <h3>Collaboration Framework</h3>
-          <p>How we'll work together to achieve success</p>
+          <h3>Working Together</h3>
+          <p>How we can solve your challenges together</p>
         </div>
       </div>
 
       <div className="quick-brand-check__collaboration">
-        <div className="quick-brand-check__collaboration-card">
-          <div className="quick-brand-check__collaboration-header">
-            <FaRocket className="icon icon--primary" />
-            <h4>Engagement Approach</h4>
-          </div>
-          <p>{data.collaborationFramework.engagementModel.approach}</p>
-          <div className="quick-brand-check__collaboration-tools">
-            <h5>Tools & Technology Stack</h5>
-            <div className="quick-brand-check__tag-container">
-              {data.collaborationFramework.engagementModel.toolsAndTechnology.map(
-                (tool, i) => (
-                  <span key={i} className="quick-brand-check__tag">
-                    {tool}
-                  </span>
-                )
-              )}
+        <div className="quick-brand-check__collaboration-grid">
+          <div className="quick-brand-check__collaboration-card">
+            <div className="quick-brand-check__collaboration-header">
+              <div className="quick-brand-check__collaboration-icon-wrapper primary">
+                <FaBullseye className="icon" />
+              </div>
+              <h4>What You'll Get</h4>
             </div>
+            <ul className="quick-brand-check__benefits-list">
+              <li className="benefit-card">
+                <div className="benefit-icon">
+                  <FaCheck className="icon" />
+                </div>
+                <div>
+                  <strong>More Quality Meetings</strong>
+                  <p>
+                    Connect with decision-makers who actually need your solution
+                  </p>
+                </div>
+              </li>
+              <li className="benefit-card">
+                <div className="benefit-icon">
+                  <FaCheck className="icon" />
+                </div>
+                <div>
+                  <strong>Save Time and Resources</strong>
+                  <p>
+                    Focus on closing deals while I handle the prospecting work
+                  </p>
+                </div>
+              </li>
+              <li className="benefit-card">
+                <div className="benefit-icon">
+                  <FaCheck className="icon" />
+                </div>
+                <div>
+                  <strong>Market Insights</strong>
+                  <p>
+                    Get real feedback from your target market to improve your
+                    offering
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="quick-brand-check__collaboration-card">
+            <div className="quick-brand-check__collaboration-header">
+              <div className="quick-brand-check__collaboration-icon-wrapper success">
+                <FaRocket className="icon" />
+              </div>
+              <h4>How We'll Work</h4>
+            </div>
+            <ul className="quick-brand-check__steps-list">
+              <li>
+                <span className="step">1</span>
+                <div>
+                  <strong>Understanding Your Goals</strong>
+                  <p>
+                    We'll start by clearly defining what success looks like for
+                    you
+                  </p>
+                </div>
+              </li>
+              <li>
+                <span className="step">2</span>
+                <div>
+                  <strong>Finding Your Best Customers</strong>
+                  <p>
+                    I'll identify and reach out to companies that match your
+                    ideal customer profile
+                  </p>
+                </div>
+              </li>
+              <li>
+                <span className="step">3</span>
+                <div>
+                  <strong>Building Relationships</strong>
+                  <p>
+                    Create meaningful connections that lead to long-term
+                    partnerships
+                  </p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="quick-brand-check__collaboration-card">
+        <div className="quick-brand-check__collaboration-card results">
           <div className="quick-brand-check__collaboration-header">
-            <FaChartLine className="icon icon--success" />
-            <h4>ROI Timeline</h4>
+            <div className="quick-brand-check__collaboration-icon-wrapper info">
+              <FaChartLine className="icon" />
+            </div>
+            <h4>Expected Results</h4>
           </div>
           <div className="quick-brand-check__roi-timeline">
             {Object.entries(
@@ -652,7 +758,7 @@ export default function QuickBrandCheck() {
               <div key={period} className="quick-brand-check__roi-milestone">
                 <div className="quick-brand-check__roi-period">
                   <strong>{period.replace(/([A-Z])/g, " $1").trim()}</strong>
-                  <span>Expected Return</span>
+                  <span>Expected Growth</span>
                 </div>
                 <div className="quick-brand-check__roi-value">
                   {formatValue(value, "percentage")}
@@ -923,8 +1029,8 @@ export default function QuickBrandCheck() {
       </div>
 
       <div className="quick-brand-check__market-overview">
-        {/* Key Metrics Cards */}
-        <div className="quick-brand-check__metrics-scroll">
+        {/* Key Metrics */}
+        <div className="quick-brand-check__metrics-grid">
           <div className="quick-brand-check__metric-card">
             <span>Sales Cycle</span>
             <strong>{data.salesCycleDuration}</strong>
@@ -943,11 +1049,11 @@ export default function QuickBrandCheck() {
           </div>
         </div>
 
-        {/* Market Analysis */}
-        <div className="quick-brand-check__analysis-container">
-          <div className="quick-brand-check__analysis-section">
+        {/* Target Groups */}
+        <div className="quick-brand-check__groups">
+          <div className="quick-brand-check__group">
             <h4>Target Demographics</h4>
-            <div className="quick-brand-check__tag-container">
+            <div className="quick-brand-check__tags">
               {data.targetDemographics.map((demo, i) => (
                 <span key={i} className="quick-brand-check__tag">
                   {demo}
@@ -956,9 +1062,9 @@ export default function QuickBrandCheck() {
             </div>
           </div>
 
-          <div className="quick-brand-check__analysis-section">
+          <div className="quick-brand-check__group">
             <h4>Key Decision Makers</h4>
-            <div className="quick-brand-check__tag-container">
+            <div className="quick-brand-check__tags">
               {data.decisionMakers.map((maker, i) => (
                 <span key={i} className="quick-brand-check__tag">
                   {maker}
@@ -968,14 +1074,14 @@ export default function QuickBrandCheck() {
           </div>
         </div>
 
-        {/* Competitive Analysis */}
-        <div className="quick-brand-check__competitive-container">
-          <div className="quick-brand-check__competitive-section">
+        {/* Analysis Sections */}
+        <div className="quick-brand-check__analysis">
+          <div className="quick-brand-check__analysis-section">
             <h4>
               <FaStar className="icon icon--small" />
               Competitive Advantages
             </h4>
-            <div className="quick-brand-check__list-container">
+            <div className="quick-brand-check__list">
               {data.competitiveAdvantages.map((advantage, i) => (
                 <div key={i} className="quick-brand-check__list-item">
                   <FaCheck className="icon icon--success" />
@@ -985,12 +1091,12 @@ export default function QuickBrandCheck() {
             </div>
           </div>
 
-          <div className="quick-brand-check__competitive-section">
+          <div className="quick-brand-check__analysis-section">
             <h4>
               <FaShieldAlt className="icon icon--small" />
               Market Entry Barriers
             </h4>
-            <div className="quick-brand-check__list-container">
+            <div className="quick-brand-check__list">
               {data.marketEntryBarriers.map((barrier, i) => (
                 <div key={i} className="quick-brand-check__list-item">
                   <FaExclamationTriangle className="icon icon--warning" />
@@ -1000,12 +1106,12 @@ export default function QuickBrandCheck() {
             </div>
           </div>
 
-          <div className="quick-brand-check__competitive-section">
+          <div className="quick-brand-check__analysis-section">
             <h4>
               <FaRocket className="icon icon--small" />
               Growth Opportunities
             </h4>
-            <div className="quick-brand-check__list-container">
+            <div className="quick-brand-check__list">
               {data.growthOpportunities.map((opportunity, i) => (
                 <div key={i} className="quick-brand-check__list-item">
                   <FaArrowRight className="icon icon--info" />
