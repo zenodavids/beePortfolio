@@ -20,6 +20,9 @@ import {
   FaExclamationTriangle,
   FaArrowRight,
   FaCheck,
+  FaChartPie,
+  FaUsers,
+  FaBullhorn,
 } from "react-icons/fa";
 import {
   Chart as ChartJS,
@@ -113,6 +116,7 @@ export default function QuickBrandCheck() {
     currentChallenges: "",
   });
   const [remainingChecks, setRemainingChecks] = useState(3); // or whatever your default limit is
+  const [analysisData, setAnalysisData] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -128,6 +132,7 @@ export default function QuickBrandCheck() {
     try {
       const data = await generateBrandHealthAnalysis(formData);
       setResult(data);
+      setAnalysisData(data);
       setRemainingChecks((prev) => prev - 1);
     } catch (error) {
       console.error("Error:", error);
@@ -520,74 +525,88 @@ export default function QuickBrandCheck() {
   );
 
   // Case Studies Section
-  const CaseStudies = ({ data }) => (
-    <div className="quick-brand-check__section">
-      <div className="quick-brand-check__section-header">
-        <FaCheckCircle className="icon" />
-        <div className="quick-brand-check__section-header-content">
-          <h3>Proven Results</h3>
-          <p>Success stories from similar partnerships</p>
+  const CaseStudies = ({ data }) => {
+    if (!data?.successBlueprint?.provenResults?.caseStudies) {
+      return null;
+    }
+
+    return (
+      <div className="quick-brand-check__section">
+        <div className="quick-brand-check__section-header">
+          <FaCheckCircle className="icon" />
+          <div className="quick-brand-check__section-header-content">
+            <h3>Proven Results</h3>
+            <p>Success stories from similar partnerships</p>
+          </div>
+        </div>
+
+        <div className="quick-brand-check__case-studies">
+          {data.successBlueprint.provenResults.caseStudies.map(
+            (study, index) => (
+              <div key={index} className="quick-brand-check__case-study">
+                <div className="quick-brand-check__case-study-header">
+                  <div className="quick-brand-check__case-study-info">
+                    <h4>{study.industry}</h4>
+                    <span className="quick-brand-check__case-study-timeline">
+                      {study.timeframe}
+                    </span>
+                  </div>
+                  <div className="quick-brand-check__case-study-badge">
+                    Success Story
+                  </div>
+                </div>
+
+                <div className="quick-brand-check__case-study-content">
+                  <div className="quick-brand-check__case-study-section">
+                    <h5>Challenge</h5>
+                    <p>{study.challenge}</p>
+                  </div>
+                  <div className="quick-brand-check__case-study-section">
+                    <h5>Our Solution</h5>
+                    <p>{study.solution}</p>
+                  </div>
+                </div>
+
+                <div className="quick-brand-check__case-study-results">
+                  <div className="quick-brand-check__case-study-metric">
+                    <FaChartLine className="icon icon--success" />
+                    <div>
+                      <span>Pipeline Generated</span>
+                      <strong>
+                        {formatValue(
+                          study.results.pipelineGenerated,
+                          "currency"
+                        )}
+                      </strong>
+                    </div>
+                  </div>
+                  <div className="quick-brand-check__case-study-metric">
+                    <FaHandshake className="icon icon--primary" />
+                    <div>
+                      <span>Meetings Booked</span>
+                      <strong>{study.results.meetingsBooked}</strong>
+                    </div>
+                  </div>
+                  <div className="quick-brand-check__case-study-metric">
+                    <FaRocket className="icon icon--info" />
+                    <div>
+                      <span>Conversion Rate</span>
+                      <strong>
+                        {formatValue(
+                          study.results.conversionRate,
+                          "percentage"
+                        )}
+                      </strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          )}
         </div>
       </div>
-
-      <div className="quick-brand-check__case-studies">
-        {data.successBlueprint.provenResults.caseStudies.map((study, index) => (
-          <div key={index} className="quick-brand-check__case-study">
-            <div className="quick-brand-check__case-study-header">
-              <div className="quick-brand-check__case-study-info">
-                <h4>{study.industry}</h4>
-                <span className="quick-brand-check__case-study-timeline">
-                  {study.timeframe}
-                </span>
-              </div>
-              <div className="quick-brand-check__case-study-badge">
-                Success Story
-              </div>
-            </div>
-
-            <div className="quick-brand-check__case-study-content">
-              <div className="quick-brand-check__case-study-section">
-                <h5>Challenge</h5>
-                <p>{study.challenge}</p>
-              </div>
-              <div className="quick-brand-check__case-study-section">
-                <h5>Our Solution</h5>
-                <p>{study.solution}</p>
-              </div>
-            </div>
-
-            <div className="quick-brand-check__case-study-results">
-              <div className="quick-brand-check__case-study-metric">
-                <FaChartLine className="icon icon--success" />
-                <div>
-                  <span>Pipeline Generated</span>
-                  <strong>
-                    {formatValue(study.results.pipelineGenerated, "currency")}
-                  </strong>
-                </div>
-              </div>
-              <div className="quick-brand-check__case-study-metric">
-                <FaHandshake className="icon icon--primary" />
-                <div>
-                  <span>Meetings Booked</span>
-                  <strong>{study.results.meetingsBooked}</strong>
-                </div>
-              </div>
-              <div className="quick-brand-check__case-study-metric">
-                <FaRocket className="icon icon--info" />
-                <div>
-                  <span>Conversion Rate</span>
-                  <strong>
-                    {formatValue(study.results.conversionRate, "percentage")}
-                  </strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+    );
+  };
 
   // Collaboration Framework Component
   const CollaborationFramework = ({ data }) => (
@@ -680,79 +699,66 @@ export default function QuickBrandCheck() {
 
   // Market Intelligence Dashboard
   const MarketIntelligence = ({ data }) => {
-    const marketMetricsData = {
-      labels: [
-        "Market Share",
-        "Industry Growth",
-        "Brand Reputation",
-        "Digital Presence",
-      ],
-      datasets: [
-        {
-          label: "Current Performance",
-          data: [
-            data.marketSharePercentage,
-            data.industryGrowthRate,
-            data.brandReputationScore,
-            data.digitalPresenceScore,
-          ],
-          backgroundColor: "rgba(59, 130, 246, 0.2)",
-          borderColor: "rgb(59, 130, 246)",
-          borderWidth: 2,
-        },
-      ],
-    };
+    if (!data) {
+      return null;
+    }
+
+    const metrics = [
+      {
+        label: "Market Share",
+        value: data.marketSharePercentage || 0,
+        icon: <FaChartPie className="icon icon--primary" />,
+        description: "Current market position",
+      },
+      {
+        label: "Industry Growth",
+        value: data.industryGrowthRate || 0,
+        icon: <FaChartLine className="icon icon--success" />,
+        description: "Annual growth rate",
+      },
+      {
+        label: "Brand Reputation",
+        value: data.brandReputationScore || 0,
+        icon: <FaStar className="icon icon--warning" />,
+        description: "Market perception score",
+      },
+      {
+        label: "Digital Presence",
+        value: data.digitalPresenceScore || 0,
+        icon: <FaGlobe className="icon icon--info" />,
+        description: "Online visibility score",
+      },
+    ];
 
     return (
       <div className="quick-brand-check__section">
-        <div className="quick-brand-check__metrics-grid">
-          {/* Make radar chart responsive */}
-          <div className="quick-brand-check__radar-chart">
-            <Radar
-              data={marketMetricsData}
-              options={{
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                  r: {
-                    ticks: {
-                      display: window.innerWidth > 480, // Hide ticks on mobile
-                    },
-                  },
-                },
-              }}
-            />
+        <div className="quick-brand-check__section-header">
+          <FaChartPie className="icon" />
+          <div className="quick-brand-check__section-header-content">
+            <h3>Market Intelligence</h3>
+            <p>Your position in the market landscape</p>
           </div>
+        </div>
 
-          <div className="quick-brand-check__metrics-cards">
-            {/* Convert to scrollable grid on mobile */}
-            <div className="quick-brand-check__metrics-scroll">
-              <div className="quick-brand-check__metric-card">
-                <span>Website Traffic</span>
-                <strong>
-                  {formatValue(data.websiteTrafficMonthly, "number")}
-                </strong>
+        <div className="quick-brand-check__market-metrics">
+          {metrics.map((metric, index) => (
+            <div key={index} className="quick-brand-check__market-metric">
+              <div className="quick-brand-check__market-metric-header">
+                {metric.icon}
+                <div>
+                  <h4>{metric.label}</h4>
+                  <span>{metric.description}</span>
+                </div>
+                <strong>{formatValue(metric.value, "percentage")}</strong>
               </div>
-              <div className="quick-brand-check__metric-card">
-                <span>Social Following</span>
-                <strong>
-                  {formatValue(data.socialMediaFollowers, "number")}
-                </strong>
-              </div>
-              <div className="quick-brand-check__metric-card">
-                <span>Brand Awareness</span>
-                <strong>
-                  {formatValue(data.brandAwarenessScore, "percentage")}
-                </strong>
-              </div>
-              <div className="quick-brand-check__metric-card">
-                <span>Lead Quality</span>
-                <strong>
-                  {formatValue(data.leadQualityScore, "percentage")}
-                </strong>
+              <div className="quick-brand-check__market-metric-progress">
+                <div
+                  className="quick-brand-check__market-metric-progress-bar"
+                  style={{ width: `${metric.value}%` }}
+                ></div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     );
@@ -1178,14 +1184,18 @@ export default function QuickBrandCheck() {
               ) : (
                 <div className="quick-brand-check__results">
                   <MarketOverview data={result} />
-                  <MarketIntelligence data={result} />
-                  <FinancialMetrics data={result} />
+                  {analysisData && (
+                    <>
+                      <MarketIntelligence data={analysisData} />
+                      <CaseStudies data={analysisData} />
+                      <CollaborationFramework data={analysisData} />
+                      <RiskMitigation data={analysisData} />
+                    </>
+                  )}
                   <MarketTrends data={result} />
                   <OpportunityAssessment data={result} />
                   <SuccessBlueprint data={result} />
-                  <CaseStudies data={result} />
-                  <CollaborationFramework data={result} />
-                  <RiskMitigation data={result} />
+                  <FinancialMetrics data={result} />
                 </div>
               )}
             </div>
