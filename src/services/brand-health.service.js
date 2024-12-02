@@ -30,6 +30,23 @@ Important:
 4. Focus on achievable, measurable outcomes
 5. Include specific success metrics past experience
 
+Analyze this business opportunity and identify:
+
+1. Money being lost due to:
+   - Missed opportunities
+   - Inefficient processes
+   - Market gaps
+
+2. Quick wins they can get by:
+   - Finding better customers
+   - Improving their sales approach
+   - Standing out from competitors
+
+3. Real numbers showing:
+   - Potential revenue increase
+   - Time saved
+   - Market share they could gain
+
 
 Return a valid JSON object with the following structure. DO NOT include any explanatory text outside the JSON:
 

@@ -400,8 +400,8 @@ export default function QuickBrandCheck() {
       <div className="quick-brand-check__section-header">
         <FaBullseye className="icon" />
         <div className="quick-brand-check__section-header-content">
-          <h3>Chance Check</h3>
-          <p>Looking at your business opportunities</p>
+          <h3>Growth Check</h3>
+          <p>Find out how much money you might be leaving on the table</p>
         </div>
       </div>
 
@@ -412,7 +412,7 @@ export default function QuickBrandCheck() {
             <div className="quick-brand-check__opportunity-icon-wrapper warning">
               <FaExclamationTriangle className="icon" />
             </div>
-            <h4>Current Problems</h4>
+            <h4>Challenges Costing You Money</h4>
           </div>
           <ul className="quick-brand-check__challenges-list">
             {data.opportunityAssessment.painPoints.currentChallenges.map(
@@ -446,7 +446,7 @@ export default function QuickBrandCheck() {
             <div className="quick-brand-check__opportunity-icon-wrapper success">
               <FaStar className="icon" />
             </div>
-            <h4>Why You're Good</h4>
+            <h4>What You Could Get</h4>
           </div>
           <div className="quick-brand-check__metrics-container">
             <div className="metric-card">
@@ -506,8 +506,8 @@ export default function QuickBrandCheck() {
       <div className="quick-brand-check__section-header">
         <FaRocket className="icon" />
         <div className="quick-brand-check__section-header-content">
-          <h3>Plan for Success</h3>
-          <p>Strategic roadmap to achieve your goals</p>
+          <h3>What You'll Get Working With Me</h3>
+          <p>No more wasted time chasing the wrong customers</p>
         </div>
       </div>
 
@@ -692,11 +692,8 @@ export default function QuickBrandCheck() {
                   <FaCheck className="icon" />
                 </div>
                 <div>
-                  <strong>Market Insights</strong>
-                  <p>
-                    Get real feedback from your target market to improve your
-                    offering
-                  </p>
+                  <strong>Know Exactly What Customers Want</strong>
+                  <p>Stop guessing what makes customers say yes</p>
                 </div>
               </li>
             </ul>
@@ -1023,8 +1020,8 @@ export default function QuickBrandCheck() {
       <div className="quick-brand-check__section-header">
         <FaSearch className="icon" />
         <div className="quick-brand-check__section-header-content">
-          <h3>Market Overview</h3>
-          <p>Detailed insights about your market position</p>
+          <h3>Your Market Position</h3>
+          <p>Let's see where you stand and what opportunities you're missing</p>
         </div>
       </div>
 
@@ -1298,8 +1295,8 @@ export default function QuickBrandCheck() {
                       <RiskMitigation data={analysisData} />
                     </>
                   )}
-                  <MarketTrends data={result} />
                   <OpportunityAssessment data={result} />
+                  <MarketTrends data={result} />
                   <SuccessBlueprint data={result} />
                   <FinancialMetrics data={result} />
                 </div>
