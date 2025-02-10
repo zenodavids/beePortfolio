@@ -6,15 +6,23 @@ import { AppWrap } from "../../wrapper";
 
 import { images } from "../../constants";
 import "./Header.scss";
-import { FaSalesforce, FaLinkedin, FaHubspot } from "react-icons/fa";
+// import { FaSalesforce, FaLinkedin, FaHubspot } from "react-icons/fa";
 
 const icons = [
   {
-    component: <FaSalesforce color="#00A1E0" size="4.5em" />,
-    name: "Salesforce",
+    imgSrc: images.clay,
+    name: "clay",
   },
-  { component: <FaLinkedin color="#0A66C2" size="5em" />, name: "LinkedIn" },
-  { component: <FaHubspot color="#FF7A59" size="3em" />, name: "HubSpot" },
+  {
+    imgSrc: images.make,
+    name: "make",
+  },
+  {
+    imgSrc: images.instantly,
+    name: "instantly",
+  },
+  // { component: <FaLinkedin color="#0A66C2" size="5em" />, name: "LinkedIn" },
+  // { component: <FaHubspot color="#FF7A59" size="3em" />, name: "HubSpot" },
 ];
 
 const scaleVariants = {
@@ -53,15 +61,10 @@ const Header = () => (
               style={{ color: "white" }}
               options={{
                 strings: [
-                  "LinkedIn Marketing",
+                  "Go-To-Market Strategist",
                   "Sales Development Representative",
                   "Lead Generation Specialist",
                   "Outbound Prospecting Expert",
-                  "Inbound Sales",
-                  "Pipeline Development",
-                  "Account Research",
-
-                  "Google Analytics",
                 ],
                 autoStart: true,
                 loop: true,
@@ -95,7 +98,11 @@ const Header = () => (
     >
       {icons.map((icon, index) => (
         <div className="circle-cmp app__flex" key={`icon-${index}`}>
-          {icon.component}
+          <img
+            src={icon.imgSrc}
+            alt={icon.name}
+            style={{ width: "4em", height: "4em" }}
+          />
         </div>
       ))}
     </motion.div>

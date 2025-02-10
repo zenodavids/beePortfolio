@@ -12,7 +12,7 @@ const dummyTestimonials = [
     feedbackImg: "/reveiws/27.png",
     metrics: {
       conversionRate: "25%",
-      pipelineGenerated: "$2.5M",
+      pipelineGenerated: "$205K",
       meetingsBooked: "120",
       avgDealSize: "$50K",
     },
@@ -30,7 +30,7 @@ const dummyTestimonials = [
     feedbackImg: "/reveiws/24.png",
     metrics: {
       conversionRate: "22%",
-      pipelineGenerated: "$1.8M",
+      pipelineGenerated: "$108K",
       meetingsBooked: "90",
       avgDealSize: "$45K",
     },
@@ -48,7 +48,7 @@ const dummyTestimonials = [
     feedbackImg: "/reveiws/25.png",
     metrics: {
       conversionRate: "20%",
-      pipelineGenerated: "$1.2M",
+      pipelineGenerated: "$120K",
       meetingsBooked: "75",
       avgDealSize: "$40K",
     },
@@ -84,7 +84,7 @@ const dummyTestimonials = [
     feedbackImg: "/reveiws/27.png",
     metrics: {
       conversionRate: "30%",
-      pipelineGenerated: "$1.5M",
+      pipelineGenerated: "$154k",
       meetingsBooked: "100",
       avgDealSize: "$55K",
     },

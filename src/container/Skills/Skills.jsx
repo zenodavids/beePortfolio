@@ -3,14 +3,21 @@ import { motion } from "framer-motion";
 import ReactTooltip from "react-tooltip";
 import {
   AiFillLinkedin,
-  AiFillShop,
-  AiFillTool,
   AiOutlineFundProjectionScreen,
-  AiOutlineTeam,
   AiOutlineMail,
   AiOutlinePieChart,
   AiOutlineBarChart,
   AiOutlineGlobal,
+  AiOutlineRobot,
+  AiOutlineDatabase,
+  AiOutlineSetting,
+  AiOutlineUsergroupAdd,
+  AiOutlineBulb,
+  AiOutlineMessage,
+  AiOutlineCloudSync,
+  AiOutlineEdit,
+  AiOutlineSolution,
+  AiOutlineShareAlt,
 } from "react-icons/ai";
 
 import { AppWrap, MotionWrap } from "../../wrapper";
@@ -19,17 +26,42 @@ import "./Skills.scss";
 // Dummy data for experiences and skills
 const dummyExperiences = [
   {
+    year: "2024",
+    works: [
+      {
+        name: "SDR Expert",
+        company: "LARGO FILMS SA",
+        desc: "Led multi-channel lead generation efforts via email, phone, and LinkedIn. Managed CRM updates and fostered professional relationships to drive sales performance.",
+      },
+      {
+        name: "B2B Appointment Setter",
+        company: "Better Be Bold",
+        desc: "Managed social media outreach and scheduled consultations. Maintained strong organization and time management to handle multiple client engagements.",
+      },
+    ],
+  },
+  {
     year: "2023",
     works: [
       {
-        name: "LinkedIn Marketing and Communications Specialist",
-        company: "GLEAC",
-        desc: "Effectively engaging with the target audience and reinforcing brand messaging. Expanded GLEAC's LinkedIn network and fostered relationships with key industry players.",
-      },
-      {
         name: "LinkedIn Sales Manager",
         company: "Selling to Executives",
-        desc: "Crafted and implemented a LinkedIn sales strategy focused on engaging C-level executives, significantly enhancing lead generation among top-tier decision-makers.",
+        desc: "Developed LinkedIn sales strategies targeting C-level executives, increasing lead generation among top-tier decision-makers.",
+      },
+      {
+        name: "LinkedIn Marketing and Communications Specialist",
+        company: "GLEAC",
+        desc: "Expanded LinkedIn network and automated marketing processes, driving engagement with key industry players and enhancing brand storytelling.",
+      },
+      {
+        name: "Freelance LinkedIn Development Specialist",
+        company: "MapleDwell",
+        desc: "Revamped LinkedIn strategy, boosting engagement by 75% and increasing B2B lead generation by 20%.",
+      },
+      {
+        name: "Freelance LinkedIn Outreach Manager",
+        company: "Avani Media",
+        desc: "Executed LinkedIn outreach campaigns, increasing engagement by 40% and expanding the professional network by 25%.",
       },
     ],
   },
@@ -39,28 +71,7 @@ const dummyExperiences = [
       {
         name: "Freelance LinkedIn Sales Developer",
         company: "5T Media and Design",
-        desc: "Implemented a targeted LinkedIn sales strategy, boosting lead generation by 30%. Enhanced LinkedIn profiles and content, leading to greater brand visibility and engagement.",
-      },
-
-      {
-        name: "Freelance LinkedIn Outreach Manager",
-        company: "Avani Media",
-        desc: "Developed and executed effective LinkedIn outreach campaigns, resulting in a 40% increase in engagement with key industry influencers and potential clients.",
-      },
-    ],
-  },
-  {
-    year: "2021",
-    works: [
-      {
-        name: "Freelance LinkedIn Development Specialist",
-        company: "MapleDwell",
-        desc: "Overhauled and optimized Mapledwell's LinkedIn strategy, leading to a 75% increase in follower engagement and a significant boost in brand awareness.",
-      },
-      {
-        name: "Entrepreneur / E-commerce Store Manager",
-        company: "CozyHome Mart",
-        desc: "Successfully established and managed CozyHome Mart, an e-commerce store specializing in home goods and decor. Developed and executed digital marketing strategies to drive traffic and increase sales.",
+        desc: "Implemented targeted LinkedIn sales strategies, increasing lead generation by 30% and boosting client acquisition by 20%.",
       },
     ],
   },
@@ -68,53 +79,71 @@ const dummyExperiences = [
 
 const dummySkills = [
   {
-    name: "LinkedIn Marketing",
+    name: "AI-Powered Prospecting",
     bgColor: "#0077b5",
-    icon: <AiFillLinkedin style={{ fontSize: "3rem", color: "#fff" }} />,
+    icon: <AiOutlineRobot style={{ fontSize: "2rem", color: "#fff" }} />,
   },
   {
-    name: "Sales Strategy",
-    bgColor: "#e0e0e0",
-    icon: <AiFillTool style={{ fontSize: "3rem", color: "#fff" }} />,
+    name: "Personalized Outreach Automation",
+    bgColor: "#e91e63",
+    icon: <AiOutlineMail style={{ fontSize: "2rem", color: "#fff" }} />,
   },
   {
-    name: "Digital Marketing",
-    bgColor: "#f0f0f0",
-    icon: <AiFillShop style={{ fontSize: "3rem", color: "#fff" }} />,
+    name: "Clay (Data Enrichment & Outreach)",
+    bgColor: "#3f51b5",
+    icon: <AiOutlineDatabase style={{ fontSize: "2rem", color: "#fff" }} />,
   },
   {
-    name: "Project Management",
-    bgColor: "#ff5722",
+    name: "Make (Workflow Automation)",
+    bgColor: "#ff9800",
+    icon: <AiOutlineSetting style={{ fontSize: "2rem", color: "#fff" }} />,
+  },
+  {
+    name: "LinkedIn Social Selling",
+    bgColor: "#0077b5",
+    icon: <AiFillLinkedin style={{ fontSize: "2rem", color: "#fff" }} />,
+  },
+  {
+    name: "Multi-Touch Outreach Strategy",
+    bgColor: "#4caf50",
+    icon: <AiOutlineUsergroupAdd style={{ fontSize: "2rem", color: "#fff" }} />,
+  },
+  {
+    name: "CRM & Pipeline Management",
+    bgColor: "#9c27b0",
     icon: (
       <AiOutlineFundProjectionScreen
-        style={{ fontSize: "3rem", color: "#fff" }}
+        style={{ fontSize: "2rem", color: "#fff" }}
       />
     ),
   },
   {
-    name: "Team Leadership",
-    bgColor: "#4caf50",
-    icon: <AiOutlineTeam style={{ fontSize: "3rem", color: "#fff" }} />,
+    name: "Intent-Based Lead Generation",
+    bgColor: "#673ab7",
+    icon: <AiOutlineBulb style={{ fontSize: "2rem", color: "#fff" }} />,
+  },
+
+  {
+    name: "Advanced LinkedIn Automation",
+    bgColor: "#795548",
+    icon: <AiOutlineCloudSync style={{ fontSize: "2rem", color: "#fff" }} />,
   },
   {
-    name: "Email Marketing",
-    bgColor: "#009688",
-    icon: <AiOutlineMail style={{ fontSize: "3rem", color: "#fff" }} />,
+    name: "Email Deliverability Optimization",
+    bgColor: "#f44336",
+    icon: <AiOutlineMail style={{ fontSize: "2rem", color: "#fff" }} />,
   },
+
   {
-    name: "Analytics",
-    bgColor: "#3f51b5",
-    icon: <AiOutlinePieChart style={{ fontSize: "3rem", color: "#fff" }} />,
-  },
-  {
-    name: "SEO",
-    bgColor: "#8bc34a",
-    icon: <AiOutlineBarChart style={{ fontSize: "3rem", color: "#fff" }} />,
-  },
-  {
-    name: "Global Marketing",
+    name: "Content & Messaging Strategy",
     bgColor: "#00bcd4",
-    icon: <AiOutlineGlobal style={{ fontSize: "3rem", color: "#fff" }} />,
+    icon: <AiOutlineEdit style={{ fontSize: "2rem", color: "#fff" }} />,
+  },
+
+  {
+    name: "Networking & Relationship Building",
+    bgColor: "#3f51b5",
+    icon: <AiOutlineGlobal style={{ fontSize: "2rem", color: "#fff" }} />,
   },
 ];
 

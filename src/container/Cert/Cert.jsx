@@ -6,7 +6,17 @@ import { AppWrap, MotionWrap } from "../../wrapper";
 import "./Cert.scss";
 
 // Dummy data
+// https://drive.google.com/file/d/11kGDifxPYN5F-7OrVVVGdVj6yC0_nts9/view?usp=drive_link
 const dummyData = [
+  {
+    title: "Rebecca Akparanta - Resume",
+    description:
+      "Comprehensive resume showcasing expertise in SDR, LinkedIn marketing, and lead generation.",
+    tags: ["Resume", "SDR", "LinkedIn Marketing"],
+    imgUrl: "/certificates/resume.png", // Replace with an actual preview image of your resume
+    certificateLink:
+      "https://drive.google.com/file/d/11kGDifxPYN5F-7OrVVVGdVj6yC0_nts9/view?usp=drive_link",
+  },
   {
     title: "HubSpot Academy",
     description: "HubSpot Marketing Software",

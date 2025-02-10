@@ -45,8 +45,8 @@ const Footer = () => {
         <div className="app__footer-card">
           <img src={images.mobile} alt="phone" />
 
-          <a href="https://wa.me/2349068904044" className="p-text">
-            Whatsapp
+          <a href="https://rebeccaakparanta.youcanbook.me/" className="p-text">
+            Book a Call
           </a>
         </div>
       </div>
