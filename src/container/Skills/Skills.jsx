@@ -26,6 +26,16 @@ import "./Skills.scss";
 // Dummy data for experiences and skills
 const dummyExperiences = [
   {
+    year: "2025",
+    works: [
+      {
+        name: "SDR Contractor",
+        company: "Motion (Creative Analytics)",
+        desc: "Used TheSwarm.com to identify warm introduction paths via client connections based on ICP filters. Evaluated connection quality by industry relevance, seniority, and company size. Took on lead enrichment via Clay to support broader top-of-funnel strategy. Delivered work used by closers to generate high-trust referral intros with minimal friction.",
+      },
+    ],
+  },
+  {
     year: "2024",
     works: [
       {
@@ -37,6 +47,11 @@ const dummyExperiences = [
         name: "B2B Appointment Setter",
         company: "Better Be Bold",
         desc: "Managed social media outreach and scheduled consultations. Maintained strong organization and time management to handle multiple client engagements.",
+      },
+      {
+        name: "Sales Development Representative (SDR)",
+        company: "Origins Consulting Group",
+        desc: "Owned the entire lead cycle, from generating leads and enriching through Clay to prospecting across LinkedIn and email with variant test copies, CTAs, and more. Closed multiple high-value clients, including Adobe ($50k), Ally Bank, Regeneron, Lockton, and others. Supported strategic campaign structuring and ICP refinement to accelerate enterprise closes.",
       },
     ],
   },

@@ -6,7 +6,7 @@ import googleAnalytics from "../assets/google-analytics.png";
 import meta from "../assets/meta.png";
 import google from "../assets/google.png";
 
-import profile from "../assets/profile.png";
+import profile from "../assets/profile.jpg";
 import circle from "../assets/circle.svg";
 import logo from "../assets/logo.png";
 import clay from "../assets/clay.png";
