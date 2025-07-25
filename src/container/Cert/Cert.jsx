@@ -14,7 +14,7 @@ const dummyData = [
     tags: ["Resume", "SDR", "LinkedIn Marketing"],
     imgUrl: "/certificates/resume.png", // Replace with an actual preview image of your resume
     certificateLink:
-      "https://drive.google.com/file/d/1_097Pi-D93Fuc7R5oVLFi918oGkNgVOB/view?usp=sharing",
+      "https://drive.google.com/file/d/1Hb5U3pC2O59tsxgbMyYDF8Waa_5iArD4/view?usp=sharing",
   },
   {
     title: "HubSpot Academy",
