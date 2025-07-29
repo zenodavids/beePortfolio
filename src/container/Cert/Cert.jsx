@@ -85,7 +85,7 @@ const dummyData = [
   {
     title: "University of California, Davis",
     description: "Google SEO Fundamentals",
-    tags: ["SEO"],
+    tags: ["Social Selling"],
     imgUrl: "/certificates/seo.png",
     certificateLink:
       "https://www.coursera.org/account/accomplishments/verify/XH66X7G7HNMM",
@@ -102,7 +102,7 @@ const dummyData = [
   {
     title: "Google",
     description: "Google Digital Marketing & E-commerce",
-    tags: ["Digital Marketing", "E-commerce"],
+    tags: ["Go To Market Strategy", "E-commerce"],
     imgUrl: "/certificates/eco.png",
     certificateLink:
       "https://www.coursera.org/account/accomplishments/professional-cert/4A3BX3DN2ZZ6",
@@ -146,11 +146,11 @@ const Cert = () => {
 
       <div className="app__work-filter">
         {[
-          "Digital Marketing",
+          "Go To Market Strategy",
           "Generative AI",
           "SDR / BDR",
           "Email Marketing",
-          "SEO",
+          "Social Selling",
           "All",
         ].map((item, index) => (
           <div
