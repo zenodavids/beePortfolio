@@ -1,5 +1,5 @@
 import React from "react";
-import { BsLinkedin, BsTwitterX } from "react-icons/bs";
+import { BsLinkedin } from "react-icons/bs";
 import { SiUpwork } from "react-icons/si";
 
 const SocialMedia = () => (
@@ -20,16 +20,6 @@ const SocialMedia = () => (
         rel="noopener noreferrer"
       >
         <BsLinkedin style={{ color: "#0077b5" }} />
-      </a>
-    </div>
-
-    <div>
-      <a
-        href="https://x.com/Beckzzzzzs"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <BsTwitterX style={{ color: "#000000" }} />
       </a>
     </div>
   </div>

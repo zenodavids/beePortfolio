@@ -24,9 +24,17 @@ const dummyData = [
     certificateLink:
       "https://app.hubspot.com/academy/achievements/f19ys75c/en/1/rebecca-akparanta/hubspot%20marketing-software",
   },
+  {
+    title: "HubSpot Academy",
+    description: "HubSpot Contextual Marketing",
+    tags: ["Email Marketing"],
+    imgUrl: "/certificates/hubspot-contx-markt.png",
+    certificateLink:
+      "https://drive.google.com/file/d/1HgrVxqQ3e677IXPEyH8BSsf3hAi-ELxj/view?usp=sharing",
+  },
 
   {
-    title: "SV Academy",
+    title: "Salesforce",
     description: "Salesforce Sales Development Representative Specialization",
     tags: ["SDR / BDR"],
     imgUrl: "/certificates/sv.png",
@@ -42,7 +50,7 @@ const dummyData = [
       "https://www.coursera.org/account/accomplishments/specialization/3KKNPXPLNJWL",
   },
   {
-    title: "Salesforce",
+    title: "SV Academy",
     description: "Conversational Selling Playbook for SDRs",
     tags: ["SDR / BDR"],
     imgUrl: "/certificates/salesforce1.png",
@@ -90,14 +98,7 @@ const dummyData = [
     certificateLink:
       "https://www.coursera.org/account/accomplishments/specialization/certificate/7QHEZED47BR5",
   },
-  {
-    title: "Coursera",
-    description: "Search Engine Optimization (SEO) with Squarespace",
-    tags: ["SEO"],
-    imgUrl: "/certificates/squarespace.png",
-    certificateLink:
-      "https://www.coursera.org/account/accomplishments/certificate/HKV24BUYJJ4S",
-  },
+
   {
     title: "Google",
     description: "Google Digital Marketing & E-commerce",
