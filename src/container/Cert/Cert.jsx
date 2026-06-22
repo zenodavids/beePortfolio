@@ -8,14 +8,14 @@ import "./Cert.scss";
 // Dummy data
 // https://drive.google.com/file/d/11kGDifxPYN5F-7OrVVVGdVj6yC0_nts9/view?usp=drive_link
 const dummyData = [
-  {
-    title: "My Resume",
-    description: "Comprehensive Resume Showcasing My Expertise",
-    tags: ["Resume", "SDR", "LinkedIn Marketing"],
-    imgUrl: "/certificates/resume.png", // Replace with an actual preview image of your resume
-    certificateLink:
-      "https://drive.google.com/file/d/1Hb5U3pC2O59tsxgbMyYDF8Waa_5iArD4/view?usp=sharing",
-  },
+  // {
+  //   title: "My Resume",
+  //   description: "Comprehensive Resume Showcasing My Expertise",
+  //   tags: ["Resume", "SDR", "LinkedIn Marketing"],
+  //   imgUrl: "/certificates/resume.png", // Replace with an actual preview image of your resume
+  //   certificateLink:
+  //     "https://drive.google.com/file/d/1Hb5U3pC2O59tsxgbMyYDF8Waa_5iArD4/view?usp=sharing",
+  // },
   {
     title: "HubSpot Academy",
     description: "HubSpot Marketing Software",
@@ -217,5 +217,5 @@ const Cert = () => {
 export default AppWrap(
   MotionWrap(Cert, "app__works"),
   "work",
-  "app__primarybg"
+  "app__primarybg",
 );
